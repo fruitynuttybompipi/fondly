@@ -1,0 +1,15 @@
+{
+  "name": "Little Happy Things",
+  "short_name": "Happy Things",
+  "description": "A private little diary for up to five happy moments a day.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fff1c4",
+  "theme_color": "#fff3c4",
+  "icons": [
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}
