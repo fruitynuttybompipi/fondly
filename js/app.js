@@ -470,6 +470,7 @@ function statsView() {
     <header class="page-head"><h1>My Little Stats</h1><p>A gentle look back, no pressure.</p></header>
     <div class="filters"><label><span>Year</span><select id="s-year">${years.map((y) => `<option ${y === yr ? 'selected' : ''}>${y}</option>`).join('')}</select></label></div>
     <section class="recap sheet-sage" aria-labelledby="recap-h">
+      <span class="tape" aria-hidden="true"></span>
       <div class="recap-jar">${jar(inYear.length, 60, 'jar')}<p class="jar-tag">${inYear.length ? `${plural(inYear.length, 'little happy thing')} in ${yr}` : `An empty jar, ready for ${yr}`}</p></div>
       <div class="recap-notes">
         <h2 id="recap-h">Your ${yr}, in little things</h2>
@@ -493,6 +494,7 @@ function memoryJarHTML() {
   // shortcut: renders the newest 300 slips; paginate if the jar ever gets slow.
   const shown = slips.slice(0, 300);
   return `<section class="memory-jar sheet" aria-labelledby="mj-h">
+    <span class="tape tape-r" aria-hidden="true"></span>
     <div class="mj-head"><div><h2 id="mj-h">Memory Jar</h2><p>Every happy thing you've ever kept: <b>${all.length}</b>.</p></div>
       <button class="btn btn-lav" data-act="pull">${icons.shuffle} Pull out a memory</button></div>
     ${p ? `<a class="pulled slip slip-${SLIP_COLORS[all.indexOf(p) % 6]}" href="#/day/${p.date}" aria-live="polite">${p.photoId ? `<span class="thumb has-photo">${photoImg(p)}</span>` : ''}<span><b>${esc(p.text || 'A photo memory')}</b><small>${fmtDate(p.date)} · open this page</small></span></a>` : ''}
