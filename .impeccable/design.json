@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-09T14:02:17.421178+00:00",
-  "title": "Design System: Little Happy Things",
+  "generatedAt": "2026-11-09T14:20:04+00:00",
+  "title": "Design System: Fondly",
   "extensions": {
     "colorMeta": {
       "butter": {
@@ -9,209 +9,209 @@
         "displayName": "Butter Yellow",
         "canonical": "#ffe08a",
         "tonalRamp": [
-          "#3f320e",
-          "#755b11",
-          "#b2870f",
-          "#f5b606",
-          "#fac73c",
-          "#f4d47c",
-          "#f4e4b6",
-          "#faf6ea"
+          "#100a01",
+          "#302505",
+          "#54430d",
+          "#7b6318",
+          "#a28634",
+          "#c2ac70",
+          "#decd9e",
+          "#faeecc"
         ]
       },
       "butter-deep": {
         "role": "primary",
         "displayName": "Butter Deep",
-        "canonical": "#f3c243",
+        "canonical": "#eec043",
         "tonalRamp": [
-          "#3c3011",
-          "#6f5717",
-          "#a88019",
-          "#e7ac15",
-          "#eec047",
-          "#edcf83",
-          "#f0e1ba",
-          "#f9f5eb"
+          "#120a00",
+          "#342400",
+          "#5a4100",
+          "#846000",
+          "#ac8200",
+          "#cbaa56",
+          "#e5cb8d",
+          "#ffedc0"
         ]
       },
-      "blush": {
+      "clay": {
         "role": "secondary",
-        "displayName": "Blush Pink",
-        "canonical": "#ffc6d1",
+        "displayName": "Clay Apricot",
+        "canonical": "#f4c7a6",
         "tonalRamp": [
-          "#3f0e17",
-          "#751125",
-          "#b20f2e",
-          "#f50634",
-          "#fa3c60",
-          "#f47c93",
-          "#f4b6c2",
-          "#faeaed"
+          "#110905",
+          "#322317",
+          "#573f2d",
+          "#7f5e45",
+          "#a78062",
+          "#c7a78f",
+          "#e2c8b5",
+          "#feeadc"
         ]
       },
-      "blush-deep": {
+      "clay-deep": {
         "role": "secondary",
-        "displayName": "Blush Deep",
-        "canonical": "#ef8aa5",
+        "displayName": "Clay Terracotta",
+        "canonical": "#d98a5e",
         "tonalRamp": [
-          "#39141e",
-          "#691d32",
-          "#9f2344",
-          "#d82354",
-          "#e35379",
-          "#e68aa3",
-          "#edbdca",
-          "#f8ecef"
+          "#150702",
+          "#3a1e0e",
+          "#64381e",
+          "#925430",
+          "#bd744b",
+          "#db9e7e",
+          "#f3c2a8",
+          "#ffe6d3"
         ]
       },
-      "lavender": {
+      "slate": {
         "role": "tertiary",
-        "displayName": "Lavender",
-        "canonical": "#d9c7f6",
+        "displayName": "Slate Blue",
+        "canonical": "#cfd8e8",
         "tonalRamp": [
-          "#221538",
-          "#3b1f68",
-          "#53269c",
-          "#6a27d4",
-          "#8b56e0",
-          "#ae8de3",
-          "#d0bfec",
-          "#f1ecf8"
+          "#0a0b0e",
+          "#24272c",
+          "#40454e",
+          "#606672",
+          "#828a97",
+          "#a8aeba",
+          "#c9ced7",
+          "#ebeff5"
         ]
       },
-      "lavender-deep": {
+      "slate-deep": {
         "role": "tertiary",
-        "displayName": "Lavender Deep",
-        "canonical": "#a585dd",
+        "displayName": "Slate Blue Deep",
+        "canonical": "#7f95bd",
         "tonalRamp": [
-          "#221834",
-          "#3c2760",
-          "#54328f",
-          "#6b3ac1",
-          "#8c65d0",
-          "#af96da",
-          "#d0c4e7",
-          "#f1eef7"
+          "#080b12",
+          "#1f2735",
+          "#39455c",
+          "#556686",
+          "#758aaf",
+          "#9dafce",
+          "#c1cee7",
+          "#e5efff"
         ]
       },
-      "baby": {
+      "sky": {
         "role": "tertiary",
-        "displayName": "Baby Blue",
-        "canonical": "#bfdff7",
+        "displayName": "Sky",
+        "canonical": "#bfe0f0",
         "tonalRamp": [
-          "#132939",
-          "#1c496a",
-          "#216aa0",
-          "#218bda",
-          "#51a5e5",
-          "#89bfe7",
-          "#bdd9ed",
-          "#ecf3f9"
+          "#070c0f",
+          "#1d282e",
+          "#364851",
+          "#516a76",
+          "#718e9c",
+          "#9bb2be",
+          "#bed1da",
+          "#e3f1f8"
         ]
       },
-      "baby-deep": {
+      "sky-deep": {
         "role": "tertiary",
-        "displayName": "Baby Blue Deep",
-        "canonical": "#74b0e0",
+        "displayName": "Sky Deep",
+        "canonical": "#5fa3c9",
         "tonalRamp": [
-          "#172836",
-          "#244763",
-          "#2d6694",
-          "#3286c9",
-          "#5ea2d7",
-          "#92bcde",
-          "#c1d7e9",
-          "#edf3f7"
+          "#030d13",
+          "#102a37",
+          "#224a5f",
+          "#356d8b",
+          "#5292b5",
+          "#84b5d2",
+          "#aed4eb",
+          "#d7f3ff"
         ]
       },
       "sage": {
         "role": "tertiary",
         "displayName": "Sage",
-        "canonical": "#cbe3bf",
+        "canonical": "#cfe3c0",
         "tonalRamp": [
-          "#23301d",
-          "#3d5730",
-          "#568041",
-          "#6eac4f",
-          "#8ec076",
-          "#b0cfa0",
-          "#d1e1c9",
-          "#f1f5ef"
+          "#090c07",
+          "#22291d",
+          "#3e4936",
+          "#5d6c52",
+          "#7e9071",
+          "#a5b39a",
+          "#c7d2be",
+          "#e9f2e3"
         ]
       },
       "sage-deep": {
         "role": "tertiary",
         "displayName": "Sage Deep",
-        "canonical": "#82b871",
+        "canonical": "#7fb06c",
         "tonalRamp": [
-          "#222e1e",
-          "#3b5433",
-          "#527c45",
-          "#69a556",
-          "#8aba7b",
-          "#aecca4",
-          "#d0dfcb",
-          "#f1f5f0"
+          "#060e04",
+          "#1a2c13",
+          "#324e27",
+          "#4c723c",
+          "#6a9859",
+          "#96ba88",
+          "#bbd8b0",
+          "#e1f6d9"
         ]
       },
-      "peach": {
+      "mint": {
         "role": "tertiary",
-        "displayName": "Peach",
-        "canonical": "#ffd3b2",
+        "displayName": "Mint",
+        "canonical": "#c4e6da",
         "tonalRamp": [
-          "#3f230e",
-          "#753c11",
-          "#b2550f",
-          "#f56d06",
-          "#fa8d3c",
-          "#f4af7c",
-          "#f4d1b6",
-          "#faf1ea"
+          "#070d0b",
+          "#1e2925",
+          "#374a43",
+          "#536d64",
+          "#739187",
+          "#9cb4ac",
+          "#c0d3cc",
+          "#e4f2ed"
         ]
       },
-      "plum-ink": {
+      "slate-ink": {
         "role": "neutral",
-        "displayName": "Plum Ink",
-        "canonical": "#463a4f",
+        "displayName": "Slate Ink",
+        "canonical": "#2f3b44",
         "tonalRamp": [
-          "#27222a",
-          "#443c4b",
-          "#62546d",
-          "#806b90",
-          "#9d8ca9",
-          "#b9afc1",
-          "#d6d0da",
-          "#f2f1f4"
+          "#090b0d",
+          "#22272b",
+          "#3e464c",
+          "#5d6870",
+          "#7e8b95",
+          "#a5b0b8",
+          "#c7cfd6",
+          "#e9eff4"
         ]
       },
-      "plum-ink-soft": {
+      "slate-ink-soft": {
         "role": "neutral",
-        "displayName": "Soft Plum",
-        "canonical": "#6a5a75",
+        "displayName": "Soft Slate Ink",
+        "canonical": "#56636c",
         "tonalRamp": [
-          "#272329",
-          "#453d4a",
-          "#63566b",
-          "#816e8d",
-          "#9d8ea7",
-          "#b9b0c0",
-          "#d6d1d9",
-          "#f2f1f3"
+          "#090c0d",
+          "#22272b",
+          "#3e464c",
+          "#5d6870",
+          "#7e8b94",
+          "#a5b0b7",
+          "#c7cfd5",
+          "#e9eff4"
         ]
       },
       "cream-paper": {
         "role": "neutral",
         "displayName": "Cream Paper",
-        "canonical": "#fffaf0",
+        "canonical": "#fbf7ee",
         "tonalRamp": [
-          "#3f2e0e",
-          "#755411",
-          "#b27c0f",
-          "#f5a506",
-          "#faba3c",
-          "#f4cc7c",
-          "#f4dfb6",
-          "#faf5ea"
+          "#0d0b06",
+          "#29261f",
+          "#48453d",
+          "#69665e",
+          "#8c8981",
+          "#b1aea5",
+          "#d1cdc5",
+          "#f2eee5"
         ]
       },
       "card-cream": {
@@ -219,14 +219,14 @@
         "displayName": "Card Cream",
         "canonical": "#fffdf8",
         "tonalRamp": [
-          "#3f310e",
-          "#755911",
-          "#b2840f",
-          "#f5b106",
-          "#fac43c",
-          "#f4d27c",
-          "#f4e2b6",
-          "#faf6ea"
+          "#0c0b08",
+          "#282623",
+          "#464541",
+          "#686662",
+          "#8b8984",
+          "#b0aea9",
+          "#cfcdc9",
+          "#f0eee9"
         ]
       },
       "polaroid-white": {
@@ -234,252 +234,312 @@
         "displayName": "Polaroid White",
         "canonical": "#fffefa",
         "tonalRamp": [
-          "#3f350e",
-          "#756111",
-          "#b2920f",
-          "#f5c506",
-          "#fad43c",
-          "#f4dc7c",
-          "#f4e8b6",
-          "#faf7ea"
+          "#0c0b09",
+          "#272624",
+          "#464542",
+          "#676663",
+          "#8a8986",
+          "#afaeaa",
+          "#cfceca",
+          "#efeeea"
         ]
       },
       "ground-butter": {
         "role": "neutral",
-        "displayName": "Home Ground",
+        "displayName": "Butter Ground (home)",
         "canonical": "#fff1c4",
         "tonalRamp": [
-          "#3f330e",
-          "#755e11",
-          "#b28b0f",
-          "#f5bc06",
-          "#facd3c",
-          "#f4d87c",
-          "#f4e5b6",
-          "#faf7ea"
+          "#0d0b05",
+          "#2b2617",
+          "#4c452d",
+          "#706644",
+          "#958961",
+          "#b8ae8e",
+          "#d5ceb5",
+          "#f4eedc"
         ]
       },
-      "ground-blush": {
+      "ground-oat": {
         "role": "neutral",
-        "displayName": "Journal Ground",
-        "canonical": "#ffe4ea",
+        "displayName": "Oat Ground (journal, day)",
+        "canonical": "#f6ecdc",
         "tonalRamp": [
-          "#3f0e19",
-          "#751128",
-          "#b20f33",
-          "#f5063b",
-          "#fa3c66",
-          "#f47c97",
-          "#f4b6c4",
-          "#faeaee"
+          "#0c0b08",
+          "#292621",
+          "#49443c",
+          "#6c6559",
+          "#91887a",
+          "#b4ada2",
+          "#d3cdc4",
+          "#f2eee7"
         ]
       },
-      "ground-baby": {
+      "ground-sky": {
         "role": "neutral",
-        "displayName": "Gallery Ground",
-        "canonical": "#e0f0fb",
+        "displayName": "Sky Ground (gallery)",
+        "canonical": "#e0eff7",
         "tonalRamp": [
-          "#132a39",
-          "#1d4b6a",
-          "#226ca0",
-          "#228fda",
-          "#52a8e4",
-          "#8ac1e6",
-          "#bddaed",
-          "#ecf3f9"
+          "#090c0d",
+          "#22272a",
+          "#3f464b",
+          "#5d686e",
+          "#7e8b92",
+          "#a5b0b5",
+          "#c7cfd4",
+          "#e9f0f3"
         ]
       },
       "ground-sage": {
         "role": "neutral",
-        "displayName": "Stats Ground",
+        "displayName": "Sage Ground (stats)",
         "canonical": "#e5f1dc",
         "tonalRamp": [
-          "#25311c",
-          "#40592e",
-          "#5c843e",
-          "#76b14b",
-          "#95c472",
-          "#b4d29e",
-          "#d3e2c8",
-          "#f2f6ef"
+          "#0a0c09",
+          "#242821",
+          "#41473c",
+          "#61695a",
+          "#838d7b",
+          "#a9b1a2",
+          "#cad0c4",
+          "#ebf0e8"
         ]
       },
-      "ground-lavender": {
+      "ground-slate": {
         "role": "neutral",
-        "displayName": "Settings Ground",
-        "canonical": "#efe7fb",
+        "displayName": "Slate Ground (settings, reward)",
+        "canonical": "#e6ecf4",
         "tonalRamp": [
-          "#231538",
-          "#3c2067",
-          "#55269b",
-          "#6d29d3",
-          "#8d57df",
-          "#af8de3",
-          "#d1bfeb",
-          "#f1ecf8"
+          "#080b10",
+          "#22272d",
+          "#41454c",
+          "#61676d",
+          "#848a91",
+          "#a9aeb6",
+          "#c8ced6",
+          "#e9eff7"
         ]
       },
-      "danger-rose": {
+      "kraft-back": {
         "role": "neutral",
-        "displayName": "Danger Rose",
-        "canonical": "#b4405c",
+        "displayName": "Kraft Back",
+        "canonical": "#c9a878",
         "tonalRamp": [
-          "#321b20",
-          "#5b2c37",
-          "#873a4c",
-          "#b64560",
-          "#c86e83",
-          "#d59ba9",
-          "#e4c6cd",
-          "#f6eef0"
+          "#100a04",
+          "#302413",
+          "#544226",
+          "#7b613b",
+          "#a28457",
+          "#c2aa87",
+          "#decbaf",
+          "#fbecd8"
+        ]
+      },
+      "kraft-front": {
+        "role": "neutral",
+        "displayName": "Kraft Front",
+        "canonical": "#ecd7b4",
+        "tonalRamp": [
+          "#0e0b06",
+          "#2c2519",
+          "#4e4330",
+          "#736449",
+          "#998667",
+          "#bbac93",
+          "#d8ccb8",
+          "#f6eddf"
+        ]
+      },
+      "kraft-flap": {
+        "role": "neutral",
+        "displayName": "Kraft Flap",
+        "canonical": "#dfc394",
+        "tonalRamp": [
+          "#0f0a04",
+          "#2e2514",
+          "#524228",
+          "#78633e",
+          "#9e855b",
+          "#bfab89",
+          "#dcccb1",
+          "#f9edd9"
+        ]
+      },
+      "danger-terracotta": {
+        "role": "neutral",
+        "displayName": "Danger Terracotta",
+        "canonical": "#b4513a",
+        "tonalRamp": [
+          "#170603",
+          "#3f1a11",
+          "#6c3123",
+          "#9c4a37",
+          "#ca6a53",
+          "#e69683",
+          "#fcbcac",
+          "#ffe2d6"
         ]
       },
       "evening-paper": {
         "role": "neutral",
-        "displayName": "Evening Indigo Paper",
-        "canonical": "#2b2342",
+        "displayName": "Evening Navy-Slate Paper",
+        "canonical": "#1f2a33",
         "tonalRamp": [
-          "#231f2e",
-          "#3c3453",
-          "#54477a",
-          "#6c59a2",
-          "#8d7eb8",
-          "#afa6ca",
-          "#d0ccdf",
-          "#f1f0f5"
+          "#090b0d",
+          "#22272b",
+          "#3f464c",
+          "#5d6870",
+          "#7e8b95",
+          "#a5afb8",
+          "#c7cfd6",
+          "#e9eff4"
         ]
       },
       "evening-card": {
         "role": "neutral",
         "displayName": "Evening Card",
-        "canonical": "#382e56",
+        "canonical": "#2b3843",
         "tonalRamp": [
-          "#231f2e",
-          "#3c3453",
-          "#544879",
-          "#6c5aa2",
-          "#8c7eb8",
-          "#afa6ca",
-          "#d0ccdf",
-          "#f1f0f5"
+          "#090b0e",
+          "#22272c",
+          "#3e464e",
+          "#5c6872",
+          "#7d8b97",
+          "#a4b0ba",
+          "#c6cfd7",
+          "#e9eff5"
+        ]
+      },
+      "evening-slate-sheet": {
+        "role": "neutral",
+        "displayName": "Evening Slate Sheet",
+        "canonical": "#34445a",
+        "tonalRamp": [
+          "#080b10",
+          "#202730",
+          "#3b4654",
+          "#59677b",
+          "#798ba2",
+          "#a1afc3",
+          "#c3cfde",
+          "#e7effb"
         ]
       },
       "evening-ink": {
         "role": "neutral",
         "displayName": "Evening Cream Ink",
-        "canonical": "#f6eddf",
+        "canonical": "#f2ede2",
         "tonalRamp": [
-          "#342919",
-          "#5f4927",
-          "#8e6a33",
-          "#c18c3b",
-          "#d0a666",
-          "#dabf96",
-          "#e7d9c4",
-          "#f7f3ee"
+          "#0c0b09",
+          "#282623",
+          "#47453f",
+          "#69665e",
+          "#8d897f",
+          "#b1aea6",
+          "#d0cdc7",
+          "#f0eeea"
         ]
       },
       "evening-ink-soft": {
         "role": "neutral",
         "displayName": "Evening Soft Ink",
-        "canonical": "#cdbfdc",
+        "canonical": "#b9c3c9",
         "tonalRamp": [
-          "#261f2d",
-          "#433552",
-          "#604978",
-          "#7c5ba1",
-          "#9a7fb7",
-          "#b7a6ca",
-          "#d5ccde",
-          "#f2f0f5"
+          "#060c10",
+          "#20282c",
+          "#3e464b",
+          "#5f686d",
+          "#818b90",
+          "#a6b0b5",
+          "#c5cfd6",
+          "#e6f0f7"
         ]
       },
       "evening-polaroid": {
         "role": "neutral",
         "displayName": "Evening Polaroid",
-        "canonical": "#ece2d2",
+        "canonical": "#ece6d8",
         "tonalRamp": [
-          "#30291c",
-          "#58482f",
-          "#82683f",
-          "#ae894d",
-          "#c1a474",
-          "#d0bea0",
-          "#e2d8c8",
-          "#f6f3ef"
+          "#0c0b09",
+          "#282622",
+          "#48453d",
+          "#6a665b",
+          "#8e897d",
+          "#b2aea4",
+          "#d1cdc5",
+          "#f1eee8"
         ]
       }
     },
     "typographyMeta": {
       "display": {
-        "displayName": "Signed Script",
-        "purpose": "Save-reward quote and long day date."
+        "displayName": "Display",
+        "purpose": "Save-reward quote and long day date. Gochi Hand."
       },
       "wordmark": {
         "displayName": "Wordmark",
-        "purpose": "Masthead 'Little Happy Things' only."
+        "purpose": "The \"Fondly\" masthead only. Gochi Hand."
       },
       "headline": {
-        "displayName": "Marker Headline",
-        "purpose": "Page h1 and greeting."
+        "displayName": "Headline",
+        "purpose": "Page h1 and the greeting."
       },
       "title": {
-        "displayName": "Marker Title",
-        "purpose": "Section headings, card titles, capture label."
+        "displayName": "Title",
+        "purpose": "Section headings, card titles, capture label, affirmation, dates."
       },
       "moment": {
-        "displayName": "Handwritten Moment",
-        "purpose": "Moment and note text; 30px ruled rows in the editor."
+        "displayName": "Moment",
+        "purpose": "Moment and note text on 30px ruled lines."
       },
       "body": {
         "displayName": "Body",
-        "purpose": "Running copy, buttons (600), form labels (600)."
+        "purpose": "Running copy, buttons (600), form labels (600). Shantell Sans."
       },
       "label": {
         "displayName": "Label",
-        "purpose": "Tabs, meta dates, hints; Soft Plum."
+        "purpose": "Tabs, meta dates, counts, hints in Soft Slate Ink."
       }
     },
     "shadows": [
       {
         "name": "sheet",
-        "value": "0 1px 0 rgb(62 44 78 / .08), 0 16px 30px -20px rgb(62 44 78 / .5)",
+        "value": "0 1px 0 rgb(var(--shadow) / .08), 0 16px 30px -20px rgb(var(--shadow) / .5)",
         "purpose": "Cards and sheets."
       },
       {
         "name": "button",
-        "value": "0 2px 0 rgb(62 44 78 / .14), 0 10px 18px -12px rgb(62 44 78 / .6)",
+        "value": "0 2px 0 rgb(var(--shadow) / .14), 0 10px 18px -12px rgb(var(--shadow) / .6)",
         "purpose": "Filled buttons."
       },
       {
         "name": "capture",
-        "value": "0 3px 0 rgb(62 44 78 / .14), 0 18px 28px -18px rgb(62 44 78 / .65)",
+        "value": "0 3px 0 rgb(var(--shadow) / .14), 0 18px 28px -18px rgb(var(--shadow) / .65)",
         "purpose": "Capture card."
       },
       {
         "name": "moment",
-        "value": "0 2px 0 rgb(0 0 0 / .04), 0 18px 28px -20px rgb(62 44 78 / .7)",
+        "value": "0 2px 0 rgb(0 0 0 / .04), 0 18px 28px -20px rgb(var(--shadow) / .7)",
         "purpose": "Moments, Polaroids, gallery items."
       },
       {
         "name": "thumb",
-        "value": "0 4px 8px -4px rgb(62 44 78 / .5)",
-        "purpose": "Thumbnails and slips."
+        "value": "0 4px 8px -4px rgb(var(--shadow) / .5)",
+        "purpose": "Small thumbnails and slips."
       },
       {
         "name": "reward",
-        "value": "0 30px 50px -30px rgb(62 44 78 / .7)",
+        "value": "0 30px 50px -30px rgb(var(--shadow) / .7)",
         "purpose": "Save-reward card only."
       },
       {
-        "name": "tabbar",
-        "value": "0 -6px 24px -10px rgb(62 44 78 / .3)",
-        "purpose": "Mobile bottom tab bar, cast upward."
+        "name": "tab-bar",
+        "value": "0 -6px 24px -10px rgb(var(--shadow) / .3)",
+        "purpose": "Mobile bottom bar, casting upward."
       },
       {
-        "name": "focus-ring",
-        "value": "outline: 3px dashed #a585dd; outline-offset: 3px",
-        "purpose": "Keyboard focus everywhere."
+        "name": "shadow-channel",
+        "value": "--shadow: 40 52 60 (day) / 4 10 16 (evening)",
+        "purpose": "Slate tint for every shadow."
       }
     ],
     "motion": [
@@ -539,132 +599,155 @@
       "kind": "button",
       "refersTo": "button-primary",
       "description": "Butter pill for the main action.",
-      "html": "<button class=\"ds-btn\">Save my happy things</button>",
-      "css": ".ds-btn{display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:10px 20px;border:0;border-radius:999px;cursor:pointer;font:600 1rem/1.2 'Shantell Sans','Comic Sans MS',sans-serif;color:#463a4f;background:#ffe08a;box-shadow:0 2px 0 rgb(62 44 78/.14),0 10px 18px -12px rgb(62 44 78/.6);transition:transform .25s cubic-bezier(.16,1,.3,1)}.ds-btn:hover{transform:translateY(-2px) rotate(-.6deg)}.ds-btn:active{transform:translateY(1px)}.ds-btn:focus-visible{outline:3px dashed #a585dd;outline-offset:3px}"
+      "html": "<button class=\"ds-btn\">Save my day</button>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 20px;border:0;border-radius:999px;cursor:pointer;font:600 1rem/1.2 'Shantell Sans','Comic Sans MS',system-ui,sans-serif;color:#2f3b44;background:#ffe08a;box-shadow:0 2px 0 rgb(40 52 60/.14),0 10px 18px -12px rgb(40 52 60/.6);transition:transform .25s cubic-bezier(.16,1,.3,1)}.ds-btn:hover{transform:translateY(-2px) rotate(-.6deg)}.ds-btn:active{transform:translateY(1px)}.ds-btn:focus-visible{outline:3px dashed #7f95bd;outline-offset:3px}"
     },
     {
-      "name": "Pink Button",
+      "name": "Clay Button",
       "kind": "button",
-      "refersTo": "button-pink",
-      "description": "Blush pill for keeping a moment.",
-      "html": "<button class=\"ds-btn-pink\">Keep it ♡</button>",
-      "css": ".ds-btn-pink{min-height:46px;padding:10px 20px;border:0;border-radius:999px;cursor:pointer;font:600 1rem/1.2 'Shantell Sans',sans-serif;color:#463a4f;background:#ffc6d1;box-shadow:0 2px 0 rgb(62 44 78/.14),0 10px 18px -12px rgb(62 44 78/.6);transition:transform .25s cubic-bezier(.16,1,.3,1)}.ds-btn-pink:hover{transform:translateY(-2px) rotate(-.6deg)}.ds-btn-pink:focus-visible{outline:3px dashed #a585dd;outline-offset:3px}"
+      "refersTo": "button-clay",
+      "description": "Clay pill for keeping a moment.",
+      "html": "<button class=\"ds-btn ds-btn-clay\">Keep it</button>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 20px;border:0;border-radius:999px;cursor:pointer;font:600 1rem/1.2 'Shantell Sans','Comic Sans MS',system-ui,sans-serif;color:#2f3b44;background:#ffe08a;box-shadow:0 2px 0 rgb(40 52 60/.14),0 10px 18px -12px rgb(40 52 60/.6);transition:transform .25s cubic-bezier(.16,1,.3,1)}.ds-btn:hover{transform:translateY(-2px) rotate(-.6deg)}.ds-btn:active{transform:translateY(1px)}.ds-btn:focus-visible{outline:3px dashed #7f95bd;outline-offset:3px}.ds-btn-clay{background:#f4c7a6}"
+    },
+    {
+      "name": "Slate Button",
+      "kind": "button",
+      "refersTo": "button-slate",
+      "description": "Slate pill for calm secondary actions.",
+      "html": "<button class=\"ds-btn ds-btn-slate\">Connect</button>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 20px;border:0;border-radius:999px;cursor:pointer;font:600 1rem/1.2 'Shantell Sans','Comic Sans MS',system-ui,sans-serif;color:#2f3b44;background:#ffe08a;box-shadow:0 2px 0 rgb(40 52 60/.14),0 10px 18px -12px rgb(40 52 60/.6);transition:transform .25s cubic-bezier(.16,1,.3,1)}.ds-btn:hover{transform:translateY(-2px) rotate(-.6deg)}.ds-btn:active{transform:translateY(1px)}.ds-btn:focus-visible{outline:3px dashed #7f95bd;outline-offset:3px}.ds-btn-slate{background:#cfd8e8}"
     },
     {
       "name": "Ghost Button",
       "kind": "button",
       "refersTo": "button-ghost",
-      "description": "Quiet secondary action with an inset rule ring.",
-      "html": "<button class=\"ds-btn-ghost\">Not now</button>",
-      "css": ".ds-btn-ghost{min-height:46px;padding:10px 20px;border:0;border-radius:999px;cursor:pointer;font:600 1rem/1.2 'Shantell Sans',sans-serif;color:#463a4f;background:transparent;box-shadow:inset 0 0 0 2px rgb(70 58 79/.12);transition:background-color .2s}.ds-btn-ghost:hover{background:rgb(70 58 79/.06)}.ds-btn-ghost:focus-visible{outline:3px dashed #a585dd;outline-offset:3px}"
+      "description": "No fill, 2px inset rule-line ring.",
+      "html": "<button class=\"ds-btn ds-btn-ghost\">Cancel</button>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 20px;border:0;border-radius:999px;cursor:pointer;font:600 1rem/1.2 'Shantell Sans','Comic Sans MS',system-ui,sans-serif;color:#2f3b44;background:#ffe08a;box-shadow:0 2px 0 rgb(40 52 60/.14),0 10px 18px -12px rgb(40 52 60/.6);transition:transform .25s cubic-bezier(.16,1,.3,1)}.ds-btn:hover{transform:translateY(-2px) rotate(-.6deg)}.ds-btn:active{transform:translateY(1px)}.ds-btn:focus-visible{outline:3px dashed #7f95bd;outline-offset:3px}.ds-btn-ghost{background:transparent;box-shadow:inset 0 0 0 2px rgb(47 59 68/.12)}.ds-btn-ghost:hover{background:rgb(47 59 68/.06)}"
     },
     {
       "name": "Chip",
       "kind": "chip",
-      "refersTo": "chip-on",
-      "description": "Filter pill; selected gets a lavender ring.",
-      "html": "<div class=\"ds-chips\"><button class=\"ds-chip ds-on\">1 year ago</button><button class=\"ds-chip\">2 years ago</button></div>",
-      "css": ".ds-chips{display:flex;gap:6px;padding:12px;background:#d9c7f6}.ds-chip{border:0;border-radius:999px;padding:6px 14px;font:.88rem 'Shantell Sans',sans-serif;cursor:pointer;background:rgb(255 255 255/.55);color:#463a4f}.ds-chip.ds-on{background:#fffdf8;box-shadow:inset 0 0 0 2px #a585dd;font-weight:600}.ds-chip:focus-visible{outline:3px dashed #a585dd;outline-offset:3px}"
+      "refersTo": "chip",
+      "description": "Year picker chip; selected gets a slate-deep inset ring.",
+      "html": "<div class=\"ds-chips\"><button class=\"ds-chip\">2025</button><button class=\"ds-chip ds-on\">2024</button></div>",
+      "css": ".ds-chips{display:flex;gap:6px;padding:12px;background:#cfd8e8}.ds-chip{border:0;border-radius:999px;padding:6px 14px;font:400 .88rem 'Shantell Sans','Comic Sans MS',system-ui,sans-serif;cursor:pointer;background:rgb(255 255 255/.55);color:#2f3b44}.ds-chip.ds-on{background:#fffdf8;box-shadow:inset 0 0 0 2px #7f95bd;font-weight:600}.ds-chip:focus-visible{outline:3px dashed #7f95bd;outline-offset:3px}"
     },
     {
       "name": "Text Field",
       "kind": "input",
       "refersTo": "input-field",
-      "description": "Paper field with inset rule ring; blush on focus.",
-      "html": "<label class=\"ds-field\">Data repository<input placeholder=\"owner/repo\"></label>",
-      "css": ".ds-field{display:grid;gap:4px;font:600 .95rem 'Shantell Sans',sans-serif;color:#463a4f}.ds-field input{font:400 1rem 'Shantell Sans',sans-serif;color:#463a4f;min-height:48px;padding:10px 14px;border-radius:14px;border:0;background:#fffaf0;box-shadow:inset 0 0 0 2px rgb(70 58 79/.12)}.ds-field input:focus{outline:none;box-shadow:inset 0 0 0 2px #ef8aa5}"
+      "description": "Paper fill, inset rule ring; focus turns clay-deep.",
+      "html": "<label class=\"ds-field\">Repository<input placeholder=\"you/fondly-data\"></label>",
+      "css": ".ds-field{display:grid;gap:4px;font:600 .95rem 'Shantell Sans','Comic Sans MS',system-ui,sans-serif;color:#2f3b44}.ds-field input{font:400 1rem 'Shantell Sans','Comic Sans MS',system-ui,sans-serif;color:#2f3b44;min-height:48px;padding:10px 14px;border-radius:14px;border:0;background:#fbf7ee;box-shadow:inset 0 0 0 2px rgb(47 59 68/.12)}.ds-field input:focus{outline:none;box-shadow:inset 0 0 0 2px #d98a5e}"
     },
     {
       "name": "Tab Bar",
       "kind": "nav",
-      "refersTo": "tab-active-icon",
-      "description": "Mobile bottom tabs; active icon sits in a butter pill.",
-      "html": "<nav class=\"ds-tabs\"><a aria-current=\"page\"><svg viewBox=\"0 0 24 24\" class=\"ds-i\"><path d=\"M4 11l8-7 8 7v9H4z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linejoin=\"round\"/></svg>Home</a><a><svg viewBox=\"0 0 24 24\" class=\"ds-i\"><rect x=\"5\" y=\"3\" width=\"14\" height=\"18\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"/></svg>Journal</a><a><svg viewBox=\"0 0 24 24\" class=\"ds-i\"><rect x=\"4\" y=\"5\" width=\"14\" height=\"14\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"/></svg>Gallery</a></nav>",
-      "css": ".ds-tabs{display:grid;grid-template-columns:repeat(3,1fr);padding:6px;background:#fffdf8;border-radius:22px 22px 0 0;box-shadow:0 -6px 24px -10px rgb(62 44 78/.3)}.ds-tabs a{display:grid;justify-items:center;gap:2px;padding:6px 2px;font:.78rem/1.15 'Shantell Sans',sans-serif;color:#6a5a75;text-decoration:none;cursor:pointer;border-radius:14px}.ds-i{width:46px;height:30px;padding:3px 10px;border-radius:999px;transition:background-color .25s cubic-bezier(.16,1,.3,1)}.ds-tabs a[aria-current]{color:#463a4f;font-weight:600}.ds-tabs a[aria-current] .ds-i{background:#ffe08a}.ds-tabs a:focus-visible{outline:3px dashed #a585dd;outline-offset:3px}"
+      "refersTo": "tab-bar",
+      "description": "Mobile bottom bar; active icon sits in a butter pill.",
+      "html": "<nav class=\"ds-tabs\"><a aria-current=\"page\"><svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3.5 11.2 12 4l8.5 7.2\"/><path d=\"M5.8 9.6V20h12.4V9.6\"/></g></svg>Home</a><a><svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 3.8h11.5a1 1 0 0 1 1 1v15.4H6.2A1.7 1.7 0 0 1 4.5 18.5V5.3c0-.9.6-1.5 1.5-1.5z\"/><path d=\"M9 8.5h6M9 11.5h4\"/></g></svg>Journal</a></nav>",
+      "css": ".ds-tabs{display:grid;grid-template-columns:repeat(2,1fr);padding:6px;background:#fffdf8;border-radius:22px 22px 0 0;box-shadow:0 -6px 24px -10px rgb(40 52 60/.3)}.ds-tabs a{display:grid;justify-items:center;gap:2px;padding:6px 2px;font:400 .78rem/1.15 'Shantell Sans','Comic Sans MS',system-ui,sans-serif;color:#56636c;cursor:pointer}.ds-tabs svg{width:46px;height:30px;padding:3px 10px;border-radius:999px;transition:background-color .25s cubic-bezier(.16,1,.3,1)}.ds-tabs a[aria-current]{color:#2f3b44;font-weight:600}.ds-tabs a[aria-current] svg{background:#ffe08a}.ds-tabs a:hover svg{background:rgb(255 224 138/.4)}"
     },
     {
       "name": "Taped Sheet",
       "kind": "card",
       "refersTo": "sheet",
-      "description": "Cream card with cut-paper corners, washi tape and photo-corner mount.",
+      "description": "Cut-paper card with washi tape and a slate photo-corner mount.",
       "html": "<div class=\"ds-sheet\"><span class=\"ds-tape\"></span><h3>Daily Little Reminder</h3><p>Say thank you to someone who won't expect it.</p></div>",
-      "css": ".ds-sheet{position:relative;margin:20px 12px;padding:22px 18px 18px;background:#fffdf8;color:#463a4f;border-radius:6px 18px 8px 14px;rotate:-.6deg;box-shadow:0 1px 0 rgb(62 44 78/.08),0 16px 30px -20px rgb(62 44 78/.5);font:1rem/1.55 'Shantell Sans',sans-serif}.ds-sheet h3{margin:0 0 4px;font:400 1.35rem/1.12 'Gochi Hand',cursive}.ds-sheet p{margin:0}.ds-sheet::after{content:'';position:absolute;right:10px;bottom:10px;width:22px;height:22px;background:linear-gradient(-45deg,#d9c7f6 50%,transparent 50%);border-radius:0 0 4px 0}.ds-tape{position:absolute;top:-11px;right:14px;width:92px;height:24px;rotate:5deg;opacity:.88;background:repeating-linear-gradient(-45deg,rgb(255 255 255/.35) 0 5px,transparent 5px 10px),#cbe3bf}"
+      "css": ".ds-sheet{position:relative;margin-top:14px;padding:22px 18px 18px;background:#fffdf8;color:#2f3b44;border-radius:6px 18px 8px 14px;rotate:-.6deg;box-shadow:0 1px 0 rgb(40 52 60/.08),0 16px 30px -20px rgb(40 52 60/.5);font:400 1rem/1.55 'Shantell Sans','Comic Sans MS',system-ui,sans-serif}.ds-sheet h3{margin:0 0 4px;font:400 1.35rem/1.12 'Gochi Hand','Comic Sans MS',cursive}.ds-sheet p{margin:0}.ds-sheet::after{content:'';position:absolute;right:10px;bottom:10px;width:22px;height:22px;background:linear-gradient(-45deg,#cfd8e8 50%,transparent 50%);border-radius:0 0 4px 0}.ds-tape{position:absolute;top:-11px;left:50%;width:92px;height:24px;translate:-50% 0;rotate:-3deg;opacity:.88;background:repeating-linear-gradient(-45deg,rgb(255 255 255/.35) 0 5px,transparent 5px 10px),#cfe3c0}"
     },
     {
       "name": "Capture Card",
       "kind": "custom",
       "refersTo": "capture-card",
-      "description": "Butter organic-cornered call to start today.",
-      "html": "<a class=\"ds-capture\" href=\"#\"><svg viewBox=\"0 0 24 24\"><path d=\"M12 5v14M5 12h14\" stroke=\"#463a4f\" stroke-width=\"2.2\" stroke-linecap=\"round\"/></svg><span><b>Capture Today's Happy Moments</b><small>2/5 collected so far</small></span></a>",
-      "css": ".ds-capture{display:flex;align-items:center;gap:14px;padding:16px 20px;text-decoration:none;background:#ffe08a;color:#463a4f;border-radius:26px 20px 28px 22px/22px 28px 20px 26px;box-shadow:0 3px 0 rgb(62 44 78/.14),0 18px 28px -18px rgb(62 44 78/.65);transition:transform .3s cubic-bezier(.16,1,.3,1)}.ds-capture:hover{transform:translateY(-3px) rotate(-.5deg)}.ds-capture:focus-visible{outline:3px dashed #a585dd;outline-offset:3px}.ds-capture svg{width:44px;height:44px;padding:9px;border-radius:50%;background:rgb(255 255 255/.6);flex:none}.ds-capture b{display:block;font:400 1.45rem/1.1 'Gochi Hand',cursive}.ds-capture small{font:.9rem 'Shantell Sans',sans-serif;opacity:.85}"
+      "description": "Butter organic card that starts tonight's page.",
+      "html": "<a class=\"ds-capture\"><svg viewBox=\"0 0 24 24\"><path d=\"M12 5v14M5 12h14\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linecap=\"round\"/></svg><span><b>Capture Today's Happy Moments</b><small>2/5 collected so far</small></span></a>",
+      "css": ".ds-capture{display:flex;align-items:center;gap:14px;padding:16px 20px;background:#ffe08a;color:#2f3b44;border-radius:26px 20px 28px 22px/22px 28px 20px 26px;box-shadow:0 3px 0 rgb(40 52 60/.14),0 18px 28px -18px rgb(40 52 60/.65);cursor:pointer;transition:transform .3s cubic-bezier(.16,1,.3,1);font:400 .9rem 'Shantell Sans','Comic Sans MS',system-ui,sans-serif}.ds-capture:hover{transform:translateY(-3px) rotate(-.5deg)}.ds-capture:focus-visible{outline:3px dashed #7f95bd;outline-offset:3px}.ds-capture svg{width:44px;height:44px;padding:9px;border-radius:50%;background:rgb(255 255 255/.6);flex:none}.ds-capture b{display:block;font:400 1.45rem/1.1 'Gochi Hand','Comic Sans MS',cursive}"
     },
     {
       "name": "Mini Polaroid",
       "kind": "card",
       "refersTo": "polaroid",
-      "description": "Photo memory in a cream frame with handwritten caption.",
-      "html": "<a class=\"ds-pol\" href=\"#\"><span class=\"ds-photo\"></span><p>Morning light through the kitchen window</p><time>9 Nov</time></a>",
-      "css": ".ds-pol{display:grid;gap:6px;width:140px;padding:8px 8px 10px;background:#fffefa;color:#463a4f;text-decoration:none;border-radius:4px;rotate:1.2deg;box-shadow:0 2px 0 rgb(0 0 0/.04),0 10px 18px -12px rgb(62 44 78/.6);transition:transform .3s cubic-bezier(.16,1,.3,1)}.ds-pol:hover{transform:translateY(-4px) rotate(-1.2deg)}.ds-pol:focus-visible{outline:3px dashed #a585dd;outline-offset:3px}.ds-photo{aspect-ratio:1;border-radius:2px;background:#bfdff7}.ds-pol p{margin:0;font:.86rem/1.35 'Shantell Sans',sans-serif}.ds-pol time{font:.78rem 'Shantell Sans',sans-serif;color:#6a5a75}"
+      "description": "Photo memory with handwritten caption.",
+      "html": "<a class=\"ds-pol\"><div class=\"ds-pol-img\"></div><p>Morning light through the kitchen window.</p><time>9 Nov</time></a>",
+      "css": ".ds-pol{display:grid;gap:6px;width:150px;padding:8px 8px 10px;background:#fffefa;color:#2f3b44;border-radius:4px;rotate:-1.6deg;box-shadow:0 2px 0 rgb(0 0 0/.04),0 10px 18px -12px rgb(40 52 60/.6);cursor:pointer;transition:transform .3s cubic-bezier(.16,1,.3,1)}.ds-pol:hover{transform:translateY(-4px) rotate(1.6deg)}.ds-pol-img{aspect-ratio:1;border-radius:2px;background:linear-gradient(160deg,#bfe0f0,#7f95bd)}.ds-pol p{margin:0;font:400 .86rem/1.35 'Shantell Sans','Comic Sans MS',system-ui,sans-serif}.ds-pol time{font:400 .78rem 'Shantell Sans','Comic Sans MS',system-ui,sans-serif;color:#56636c}"
+    },
+    {
+      "name": "Kraft Envelope",
+      "kind": "custom",
+      "refersTo": "sheet-slate",
+      "description": "On This Day: sealed kraft envelope on the slate sheet.",
+      "html": "<div class=\"ds-otd\"><h3>A little memory from this day…</h3><div class=\"ds-env\"><i class=\"ds-flap\"></i><i class=\"ds-seal\"></i></div></div>",
+      "css": ".ds-otd{padding:20px 18px;background:#cfd8e8;color:#2f3b44;border-radius:6px 18px 8px 14px;box-shadow:0 1px 0 rgb(40 52 60/.08),0 16px 30px -20px rgb(40 52 60/.5)}.ds-otd h3{margin:0 0 14px;font:400 1.5rem/1.12 'Gochi Hand','Comic Sans MS',cursive}.ds-env{position:relative;height:130px;margin:0 6%;background:#ecd7b4;border-radius:10px;box-shadow:inset 0 -2px 0 rgb(0 0 0/.05)}.ds-flap{position:absolute;inset:0 0 auto;height:60%;background:#dfc394;clip-path:polygon(0 0,100% 0,50% 100%)}.ds-seal{position:absolute;left:50%;top:60%;width:40px;height:40px;translate:-50% -50%;border-radius:50%;background:#d98a5e;box-shadow:0 3px 6px rgb(0 0 0/.18)}"
     }
   ],
   "narrative": {
     "northStar": "The Pocket Scrapbook",
-    "overview": "Every screen is a page of coloured paper and every memory is something pasted onto it: a taped note card, a Polaroid, a folded slip. The whole app sits on a grain-textured paper ground whose colour changes by section (butter for home, blush for the journal and day page, baby blue for the gallery, sage for stats, lavender for settings and the save reward). Cream cards, Polaroid frames and pastel notes rest on that ground at slight angles, held down by washi tape. Plum ink draws everything: text, the outlines of the authored doodle stickers and mood faces, and the hand-drawn today circle.\n\nDensity is low and the tone is gentle. Most content is one column on the phone. On desktop it becomes a left rail with a two-column page. Delight comes from physical metaphors that each do a real job: the happiness jar fills with folded paper stars, the On This Day envelope breaks its seal to reveal Polaroids, and today's date gets a circle that draws itself. After dark the evening theme turns the paper deep indigo and the pastels become ink. Paper objects that are light in real life, such as Polaroids and slips, stay light.\n\nThe system rejects the habit-tracker dashboard. It has no streaks, rings, charts or KPI tiles. Numbers appear as handwritten notes (\"2/5 little happy things collected\") and never as metrics.",
+    "overview": "Every screen is a page of coloured paper and every memory is something pasted onto it: a taped note card, a Polaroid, a folded slip. The whole app sits on a grain-textured paper ground whose colour changes by section: butter for home, oat for the journal and day page, sky for the gallery, sage for stats, and slate for settings and the save reward. Cream cards, Polaroid frames and pastel notes sit on that ground with washi tape, photo-corner mounts and small tilts. All text and every doodle outline is drawn in slate ink. The palette is gender-neutral by the owner's decision: butter, clay, slate, sky, sage and mint, with no pink or lavender lead.\n\nDensity is low and the tone is gentle. Most content is one column on the phone. On desktop it becomes a left rail with a two-column page. Delight comes from physical metaphors that each do a real job: the happiness jar fills with folded paper stars, the On This Day kraft envelope breaks its seal to reveal Polaroids, and today's date gets a circle that draws itself. After dark the evening theme turns the paper deep navy-slate, the pastels become ink, and Polaroids and slips stay light paper.\n\nThe system rejects the habit-tracker dashboard. It has no streaks, rings, charts or KPI tiles. Numbers appear as handwritten notes (\"2/5 little happy things collected\") and never as metrics.",
     "keyCharacteristics": [
       "A grain-textured paper ground with a different colour for each route",
-      "Plum ink (#463a4f) for text and every doodle outline",
-      "Three faces: Gochi Hand for headings, Yellowtail script for the wordmark, dates and quotes, and Shantell Sans for body text",
-      "Washi tape strips, Polaroid frames, photo-corner mounts, and ruled or graph-paper card fills",
+      "Slate ink (#2f3b44) for text and every doodle outline",
+      "Two faces only: Gochi Hand as the main voice and Shantell Sans for body and UI",
+      "Washi tape strips, Polaroid frames, photo-corner mounts, a kraft envelope, and ruled or graph-paper card fills",
       "Small resting tilts (between -1.6deg and 2deg) and asymmetric \"cut paper\" corners",
-      "Soft, warm, plum-tinted drop shadows; nothing glossy",
-      "An evening theme that inverts the paper while light objects keep dark ink"
+      "Soft, slate-tinted drop shadows that pool under objects; nothing glossy",
+      "An evening theme on deep navy-slate paper where light paper objects keep dark ink"
     ],
     "rules": [
       {
-        "name": "The Plum On Pastel Rule",
-        "body": "Text on any pastel fill (butter, blush, lavender, baby, sage, peach) or on any light paper object is fixed plum #463a4f in both themes. The evening theme never turns that text cream.",
+        "name": "The Slate On Pastel Rule",
+        "body": "Text on any pastel fill (butter, clay, slate, sky, sage, mint) or on any light paper object is fixed slate ink #2f3b44 in both themes. The evening theme never turns that text cream.",
+        "section": "colors"
+      },
+      {
+        "name": "The Neutral Palette Rule",
+        "body": "The palette is butter, clay, slate, sky, sage and mint on cream. Pink and lavender never lead a surface; they appear only inside user photos.",
         "section": "colors"
       },
       {
         "name": "The Paper Per Room Rule",
-        "body": "Each route sets its own paper ground. A new route picks one of the five grounds; it never introduces a sixth hue.",
+        "body": "Each route sets one of the five section grounds; a new route never introduces a sixth hue.",
         "section": "colors"
       },
       {
         "name": "The Ink Repaints Rule",
-        "body": "Doodle art draws with `var(--ink)` and pastel `var(--*)` fills, never with literal hex values, so that the evening theme repaints it.",
+        "body": "Doodle art draws with `var(--ink)` and pastel `var(--*)` fills, never literal hex values, so the evening theme repaints it.",
         "section": "colors"
       },
       {
-        "name": "The Script Is Signed Rule",
-        "body": "Yellowtail is used only for the wordmark, dates, affirmations and quotes. It never carries an instruction, a button or a paragraph.",
+        "name": "The Two Hands Rule",
+        "body": "Only two faces exist. Gochi Hand speaks (names, headings, dates, quotes, moments); Shantell Sans explains (body, buttons, labels, forms). Gochi Hand never carries an instruction paragraph or a button label.",
         "section": "typography"
       },
       {
         "name": "The No Shouting Rule",
-        "body": "Type has no uppercase transforms and no letter-spaced labels. Hierarchy comes from changing the face and the size.",
+        "body": "Type has no uppercase transforms and no letter-spaced labels. Hierarchy comes from switching face and size.",
         "section": "typography"
       },
       {
         "name": "The Pooled Shadow Rule",
-        "body": "Every shadow has a negative spread and a plum tint. No grey halos and no hard offset blocks; the only crisp edge allowed is the 1 to 3px paper lip.",
+        "body": "Every shadow has a negative spread and a slate tint. No grey halos and no hard offset blocks; the only crisp edge allowed is the 1 to 3px paper lip.",
         "section": "elevation"
       }
     ],
     "dos": [
-      "**Do** put plum ink #463a4f on every pastel fill and light paper object, in both themes.",
-      "**Do** build each new card from the paper kit: cut-paper corners, a pooled plum shadow, and optional washi tape or a photo-corner mount.",
+      "**Do** put slate ink #2f3b44 on every pastel fill and light paper object, in both themes.",
+      "**Do** build each new card from the paper kit: cut-paper corners, a pooled slate shadow, and optional washi tape or a photo-corner mount.",
       "**Do** keep resting tilts between -1.6deg and 2deg, and straighten or lift them on hover with the house ease.",
       "**Do** draw new icons and stickers as authored SVG using `var(--ink)` outlines at 2.2 stroke and pastel `var()` fills.",
-      "**Do** use a dashed 3px lavender-deep outline for keyboard focus, and keep touch targets at 44px or more.",
+      "**Do** use a dashed 3px slate-deep outline for keyboard focus, and keep touch targets at 44px or more.",
       "**Do** give a new route one of the five section grounds."
     ],
     "donts": [
       "**Don't** show progress as streaks, rings, charts or KPI tiles. A count is a handwritten note or a butter pill.",
-      "**Don't** set Yellowtail on buttons, instructions or paragraphs.",
+      "**Don't** let pink or lavender lead a surface, a button or a sticker fill.",
+      "**Don't** add a third typeface, or set Gochi Hand on buttons, instructions or paragraphs.",
       "**Don't** use uppercase, letter-spaced labels, or eyebrow text above headings.",
-      "**Don't** use grey or hard-offset drop shadows. Shadows pool under the object, tinted plum.",
+      "**Don't** use grey or hard-offset drop shadows. Shadows pool under the object, tinted slate.",
       "**Don't** use emoji or text glyphs as icons. Draw the doodle as SVG.",
+      "**Don't** set clay-deep as a text colour on light grounds; it is a stroke and fill accent.",
       "**Don't** turn the evening theme into a dark-mode inversion of Polaroids and slips. They stay light paper with dark ink."
     ]
   }

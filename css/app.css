@@ -332,7 +332,7 @@ svg.note-sticker { width: 34px; height: 34px; }
 svg.jar { width: 92px; height: auto; flex: none; overflow: visible; }
 .jar-count, .jar-full { font: 400 1.35rem/1.25 var(--hand); }
 .jar-count b { font-family: var(--body); font-weight: 700; font-size: 1.1rem; background: var(--butter); color: #2f3b44; padding: 1px 9px; border-radius: 999px; margin-right: 4px; }
-.jar-full { color: var(--clay-deep); }
+.jar-full { color: var(--ink); }
 .jar-star { transform-box: fill-box; }
 .jar-star.drop, .done .jar-star { animation: drop .9s var(--ease) backwards; animation-delay: calc(var(--i) * 90ms); }
 @keyframes drop { from { opacity: 0; translate: 0 -70px; } 60% { opacity: 1; } }

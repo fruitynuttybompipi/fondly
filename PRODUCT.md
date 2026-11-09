@@ -42,7 +42,7 @@ Not a habit tracker or productivity log. It is a personal scrapbook: the five-mo
 - Sync conflicts: newest edit wins, per moment.
 - No in-app lock; the phone's own lock is the guard.
 - Future dates are visible but locked; writing allowed on today and past days only.
-- Evening theme switches on automatically after sunset (deep indigo paper, pastel ink); daytime stays light pastel.
+- Evening theme switches on automatically after sunset (deep navy-slate paper, pastel ink); daytime stays light pastel.
 
 ## Brand Commitments
 
