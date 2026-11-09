@@ -19,7 +19,7 @@ STORY: Open, see the month with tiny photos in day cells, tap capture, drop up t
 
 FIRST VIEWPORT: Phone: wordmark bar; calendar card filling width with drawn today circle and thumbnail cells; butter capture button directly below; greeting and affirmation start below the fold edge. Bottom tab bar. Desktop: left rail, calendar left two-thirds, greeting, capture and envelope stacked right.
 
-FORM: Brief-pinned scrapbook world, position 1 of 1 (owner pinned). Signature moves: happiness jar filling with folded paper stars; On This Day sealed envelope that opens to Polaroids; self-drawing today circle. seed: none (unavailable)
+FORM: Brief-pinned scrapbook world; concept-seed rolled degraded (no challengers) and the owner's pinned world wins field by field. Signature moves: happiness jar filling with folded paper stars; On This Day sealed envelope that opens to Polaroids; self-drawing today circle. seed:e309383eea32360f
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
 

@@ -54,9 +54,9 @@ const hash = (s) => [...s].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7)
 export const dailyPick = (list, date, salt = '') => list[hash(date + salt) % list.length];
 
 export function greeting(hour) {
-  if (hour < 5) return 'Still up, night owl? ✦';
-  if (hour < 18) return 'Hello, sunshine! ☀️';
-  return 'Good evening, moonbeam ☾';
+  if (hour < 5) return { text: 'Still up, night owl?', art: 'sparkle' };
+  if (hour < 18) return { text: 'Hello, sunshine!', art: 'sun' };
+  return { text: 'Good evening, moonbeam', art: 'sparkle' };
 }
 
 export const EMPTY_OTD = "Your little memories are still growing. One day, you'll look back and smile at the beautiful moments you've collected. ♡";

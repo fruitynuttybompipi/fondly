@@ -56,10 +56,21 @@ export const tinySparkle = (cls = 'deco') => svg(`<path stroke="var(--ink)" stro
 export const tinyHeart = (cls = 'deco') => svg(`<path stroke="var(--ink)" stroke-width="1.6" stroke-linejoin="round" fill="var(--blush-deep)" d="M12 20.5C7 16.6 3 13.4 3 9.2 3 6.3 5.2 4.2 7.8 4.2c1.8 0 3.3 1 4.2 2.5.9-1.5 2.4-2.5 4.2-2.5C18.8 4.2 21 6.3 21 9.2c0 4.2-4 7.4-9 11.3z"/>`, 24, cls);
 
 /** Paper star that drops into the happiness jar. */
-const paperStar = (x, y, fill, rot, i) => `<g class="jar-star" style="--i:${i}" transform="translate(${x} ${y}) rotate(${rot})"><path d="M0-11 3.2-4 11-3.4 5-1.6 6.8 9 0 4.8-6.8 9-5-1.6-11-3.4-3.2-4z" fill="${fill}" stroke="var(--ink)" stroke-width="1.8" stroke-linejoin="round"/><path d="M0-11 0 4.8M-11-3.4 0 4.8M11-3.4 0 4.8" stroke="var(--ink)" stroke-width=".9" opacity=".35"/></g>`;
+const paperStar = (x, y, fill, rot, i, k = 1) => `<g class="jar-star" style="--i:${i}" transform="translate(${x} ${y}) rotate(${rot}) scale(${k})"><path d="M0-11 3.2-4 11-3.4 5-1.6 6.8 9 0 4.8-6.8 9-5-1.6-11-3.4-3.2-4z" fill="${fill}" stroke="var(--ink)" stroke-width="1.8" stroke-linejoin="round"/><path d="M0-11 0 4.8M-11-3.4 0 4.8M11-3.4 0 4.8" stroke="var(--ink)" stroke-width=".9" opacity=".35"/></g>`;
 const STAR_SPOTS = [[46, 112, -12, 'var(--blush-deep)'], [72, 108, 18, 'var(--butter-deep)'], [58, 88, 4, 'var(--baby-deep)'], [40, 70, -20, 'var(--sage-deep)'], [74, 66, 24, 'var(--lavender-deep)']];
+const FILLS = ['var(--blush-deep)', 'var(--butter-deep)', 'var(--baby-deep)', 'var(--sage-deep)', 'var(--lavender-deep)'];
+/** Up to 5 stars sit in fixed spots; bigger counts pack the jar bottom-up (shortcut: draws at most 60 stars, the label carries the true count). */
+function starSpots(n) {
+  if (n <= 5) return STAR_SPOTS.slice(0, n);
+  const out = [];
+  for (let i = 0; i < Math.min(n, 60); i++) {
+    const row = Math.floor(i / 6), col = i % 6;
+    out.push([28 + col * 12 + (row % 2) * 5, 120 - row * 9, ((i * 47) % 50) - 25, FILLS[i % 5], 0.62]);
+  }
+  return out;
+}
 export function jar(count, max = 5, cls = 'jar') {
-  const stars = STAR_SPOTS.slice(0, Math.min(count, max)).map(([x, y, r, f], i) => paperStar(x, y, f, r, i)).join('');
+  const stars = starSpots(Math.min(count, max)).map(([x, y, r, f, k], i) => paperStar(x, y, f, r, i, k)).join('');
   return `<svg viewBox="0 0 116 140" class="${cls}" role="img" aria-label="${count} of ${max} happy things in the jar">
     <path d="M30 22h56v10c11 6 16 16 16 30v52c0 11-8 18-19 18H33c-11 0-19-7-19-18V62c0-14 5-24 16-30z" fill="var(--jar-glass)" stroke="var(--ink)" stroke-width="2.4" stroke-linejoin="round"/>
     ${stars}

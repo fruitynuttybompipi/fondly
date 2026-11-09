@@ -164,7 +164,7 @@ function homeView() {
     <div class="home-main">${calendarHTML()}${captureHTML()}</div>
     <div class="home-side">
       <section class="hello" aria-labelledby="hello-h">
-        <h1 id="hello-h">${greeting(new Date().getHours())}</h1>
+        ${(() => { const g = greeting(new Date().getHours()); return `<h1 id="hello-h">${g.text} ${sticker(g.art, 'greet-art')}</h1>`; })()}
         <p class="affirm">${esc(dailyPick(AFFIRMATIONS, t))}</p>
         <aside class="reminder"><span class="tape tape-r" aria-hidden="true"></span><h2>Daily Little Reminder</h2><p>${esc(dailyPick(REMINDERS, t, 'r'))}</p></aside>
       </section>
@@ -247,8 +247,8 @@ function dayView(date) {
   return `<div class="day">
     <header class="day-head">
       <a class="back" href="#/">${icons.left}<span>Calendar</span></a>
-      <p class="day-date"><time datetime="${date}">${fmtLong(date)}</time></p>
-      <h1>${isToday ? "Today, I'm grateful for…" : 'That day, I was grateful for…'}</h1>
+      <h1 class="day-date"><time datetime="${date}">${fmtLong(date)}</time></h1>
+      <p class="day-lead">${isToday ? "Today, I'm grateful for…" : 'That day, I was grateful for…'}</p>
       <p class="day-sub">It's the little things that make life beautiful.</p>
     </header>
     <aside class="jar-panel" aria-live="polite">
@@ -470,7 +470,7 @@ function statsView() {
     <header class="page-head"><h1>My Little Stats</h1><p>A gentle look back, no pressure.</p></header>
     <div class="filters"><label><span>Year</span><select id="s-year">${years.map((y) => `<option ${y === yr ? 'selected' : ''}>${y}</option>`).join('')}</select></label></div>
     <section class="recap sheet-sage" aria-labelledby="recap-h">
-      <div class="recap-jar">${jar(Math.min(5, Math.ceil(inYear.length / 10)), 5, 'jar')}<p class="jar-label"><b>${inYear.length}</b><span>happy ${inYear.length === 1 ? 'moment' : 'moments'} in ${yr}</span></p></div>
+      <div class="recap-jar">${jar(inYear.length, 60, 'jar')}<p class="jar-tag">${inYear.length ? `${plural(inYear.length, 'little happy thing')} in ${yr}` : `An empty jar, ready for ${yr}`}</p></div>
       <div class="recap-notes">
         <h2 id="recap-h">Your ${yr}, in little things</h2>
         ${inYear.length ? `<ul class="recap-list">
@@ -480,7 +480,6 @@ function statsView() {
           ${topSticker ? `<li class="with-art">${sticker(topSticker, 'sticker sm')}<span>Your favourite sticker was the <b>${STICKERS[topSticker].label.toLowerCase()}</b>.</span></li>` : ''}
         </ul>` : `<p>No happy things kept in ${yr} yet. They'll gather here as you go.</p>`}
       </div>
-      <ol class="shelf" aria-label="Happy moments per month">${perMonth.map((c, i) => `<li><span class="shelf-jar" style="--fill:${maxMonth ? c / maxMonth : 0}" aria-hidden="true"><i></i></span><b>${c}</b><small>${MONTHS[i].slice(0, 3)}</small><span class="sr">${MONTHS[i]}: ${c}</span></li>`).join('')}</ol>
     </section>
     ${memoryJarHTML()}
   </div>`;
