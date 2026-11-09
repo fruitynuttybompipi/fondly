@@ -1,5 +1,5 @@
 // App shell cache. Bump VERSION whenever a shipped file changes.
-const VERSION = 'fondly-v4';
+const VERSION = 'fondly-v5';
 const SHELL = ['./', 'index.html', 'css/app.css', 'js/app.js', 'js/db.js', 'js/sync.js', 'js/art.js', 'js/content.js',
   'fonts/shantell-sans.woff2', 'fonts/gochi-hand.woff2', 'icons/icon.svg', 'icons/icon-192.png', 'manifest.webmanifest'];
 

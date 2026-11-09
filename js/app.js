@@ -31,11 +31,13 @@ function toast(msg) {
 }
 
 // ---------- theme: evening paper after dark ----------
+const darkQuery = matchMedia('(prefers-color-scheme: dark)');
+darkQuery.addEventListener('change', () => applyTheme());
 async function applyTheme() {
   const pref = await db.getMeta('theme', 'auto');
   const h = new Date().getHours();
   // shortcut: fixed 7pm–6am window stands in for real sunset; use a sun calculator if the owner travels far.
-  const evening = pref === 'evening' || (pref === 'auto' && (h >= 19 || h < 6));
+  const evening = pref === 'evening' || (pref === 'auto' && (h >= 19 || h < 6 || darkQuery.matches));
   document.documentElement.dataset.theme = evening ? 'evening' : 'day';
   $('meta[name="theme-color"]').content = evening ? '#1f2a33' : '#fff3c4';
 }
@@ -60,12 +62,12 @@ async function load() {
 }
 
 // ---------- shared pieces ----------
-const photoImg = (m, cls = '') => (m.photoId ? `<img class="${cls}" data-photo="${esc(m.photoId)}" alt="${esc(m.text ? 'Photo: ' + m.text.slice(0, 80) : 'Photo of a happy moment')}">` : '');
+const photoImg = (m, cls = '', full = false) => (m.photoId ? `<img class="${cls}" data-photo="${esc(m.photoId)}"${full ? ' data-full' : ''} loading="lazy" decoding="async" alt="${esc(m.text ? 'Photo: ' + m.text.slice(0, 80) : 'Photo of a happy moment')}">` : '');
 const moodTag = (m) => (m.mood ? `<span class="mood-tag">${mood(m.mood)}<span>${MOODS[m.mood].label}</span></span>` : '');
 
 async function hydratePhotos(root = document) {
   for (const img of $$('img[data-photo]', root)) {
-    const url = await db.photoURL(img.dataset.photo);
+    const url = await db.photoURL(img.dataset.photo, !('full' in img.dataset));
     if (url) img.src = url; else img.closest('.has-photo')?.classList.add('photo-missing');
   }
 }
@@ -198,7 +200,7 @@ function momentCard(m, date) {
   }
   return `<li class="moment ${m.photoId ? 'polaroid has-photo' : 'note'} ${tilt(m.id)}">
     <span class="tape" aria-hidden="true"></span>
-    ${m.photoId ? `<div class="pol-frame">${photoImg(m)}</div>` : ''}
+    ${m.photoId ? `<div class="pol-frame">${photoImg(m, '', true)}</div>` : ''}
     ${m.prompt ? `<p class="moment-prompt">${esc(m.prompt)}</p>` : ''}
     <p class="moment-text">${esc(m.text)}</p>
     <div class="moment-foot">${moodTag(m)}<span class="spacer"></span>
@@ -370,7 +372,7 @@ function doneView(date) {
     <div class="confetti" aria-hidden="true">${decos.map((f, i) => `<span style="--i:${i}">${f()}</span>`).join('')}</div>
     <div class="done-card">
       <span class="tape tape-l" aria-hidden="true"></span><span class="tape tape-r" aria-hidden="true"></span>
-      <p class="done-lead">${n ? `${plural(n, 'little happy thing')}, kept safe.` : 'Your page is saved.'}</p>
+      <h1 class="done-lead">${n ? `${plural(n, 'little happy thing')}, kept safe.` : 'Your page is saved.'}</h1>
       <blockquote class="done-quote">${esc(doneQuote)}</blockquote>
       ${jar(n, 5, 'jar small')}
       <div class="done-actions"><a class="btn btn-butter big" href="#/">Back to calendar</a><a class="link-btn" href="#/day/${date}">See my page again</a></div>
@@ -538,7 +540,7 @@ async function settingsView() {
     <section class="sheet set-card" aria-labelledby="look-h">
       <h2 id="look-h">Look</h2>
       <div class="seg" role="radiogroup" aria-label="Theme">
-        ${[['auto', 'Evening paper after 7pm'], ['day', 'Always daytime'], ['evening', 'Always evening']].map(([v, l]) => `<label><input type="radio" name="theme" value="${v}" ${theme === v ? 'checked' : ''}><span>${l}</span></label>`).join('')}
+        ${[['auto', 'Evening paper after 7pm or in dark mode'], ['day', 'Always daytime'], ['evening', 'Always evening']].map(([v, l]) => `<label><input type="radio" name="theme" value="${v}" ${theme === v ? 'checked' : ''}><span>${l}</span></label>`).join('')}
       </div>
     </section>
     <section class="sheet set-card" aria-labelledby="bk-h">

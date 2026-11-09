@@ -36,14 +36,9 @@ colors:
 typography:
   display:
     fontFamily: "Gochi Hand, Comic Sans MS, cursive"
-    fontSize: "clamp(2.1rem, 1.6rem + 2vw, 3rem)"
+    fontSize: "clamp(2.1rem, 1.7rem + 1.6vw, 3rem)"
     fontWeight: 400
-    lineHeight: 1.18
-  wordmark:
-    fontFamily: "Gochi Hand, Comic Sans MS, cursive"
-    fontSize: "clamp(1.7rem, 1.4rem + 1.2vw, 2.2rem)"
-    fontWeight: 400
-    lineHeight: 1
+    lineHeight: 1.15
   headline:
     fontFamily: "Gochi Hand, Comic Sans MS, cursive"
     fontSize: "clamp(2rem, 1.6rem + 1.6vw, 2.75rem)"
@@ -57,14 +52,19 @@ typography:
     lineHeight: 1.12
   moment:
     fontFamily: "Gochi Hand, Comic Sans MS, cursive"
-    fontSize: "1.3rem"
+    fontSize: "1.35rem"
     fontWeight: 400
-    lineHeight: 1.38
+    lineHeight: 1.3
   body:
     fontFamily: "Shantell Sans, Comic Sans MS, system-ui, sans-serif"
     fontSize: "1.0625rem"
     fontWeight: 400
     lineHeight: 1.55
+  small:
+    fontFamily: "Shantell Sans, Comic Sans MS, system-ui, sans-serif"
+    fontSize: "0.88rem"
+    fontWeight: 400
+    lineHeight: 1.35
   label:
     fontFamily: "Shantell Sans, Comic Sans MS, system-ui, sans-serif"
     fontSize: "0.78rem"
@@ -73,9 +73,15 @@ typography:
 rounded:
   photo: "2px"
   polaroid: "4px"
+  note: "6px"
+  slip: "2px 6px 3px 5px"
   sheet: "6px 18px 8px 14px"
   cell: "14px"
+  tabbar: "22px 22px 0 0"
+  mount: "4px 0 0 0"
+  mount-end: "0 0 4px 0"
   organic: "26px 20px 28px 22px / 22px 28px 20px 26px"
+  round: "50%"
   pill: "999px"
 spacing:
   gutter: "16px"
@@ -218,6 +224,9 @@ Six gender-neutral pastels with a deeper partner for most of them, slate ink, cr
 **The Ink Repaints Rule.** Doodle art draws with `var(--ink)` and pastel `var(--*)` fills, never literal hex values, so the evening theme repaints it.
 
 ## Typography
+
+Sizes come from a seven-step scale in `css/app.css` (`--fs-xs` .78rem, `--fs-sm` .88rem, `--fs-base` 1.0625rem, `--fs-md` 1.35rem, `--fs-lg` 1.6rem, `--fs-xl` and `--fs-display` fluid). Use a token, never a raw rem value.
+
 
 **Display Font:** Gochi Hand (with Comic Sans MS, cursive)
 **Body Font:** Shantell Sans, variable 300 to 800 (with Comic Sans MS, system-ui, sans-serif)

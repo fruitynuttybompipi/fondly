@@ -95,31 +95,44 @@ export async function putMomentsFromSync(rows) {
 // ---- photos ----
 export const getPhoto = (id) => tx('photos', 'readonly', (s) => req(s.get(id)));
 export const putPhoto = (id, blob) => tx('photos', 'readwrite', (s) => s.put(blob, id));
-export const deletePhoto = (id) => tx('photos', 'readwrite', (s) => s.delete(id));
-export const photoKeys = () => tx('photos', 'readonly', (s) => req(s.getAllKeys()));
+export const deletePhoto = (id) => tx('photos', 'readwrite', (s) => { s.delete(id); s.delete(id + THUMB); });
+/** Full photos only; thumbnails are local, rebuilt on demand. */
+export const photoKeys = () => tx('photos', 'readonly', (s) => req(s.getAllKeys())).then((keys) => keys.filter((k) => !k.endsWith(THUMB)));
+
+const THUMB = '_t';
+async function resize(source, max, quality) {
+  const bmp = await createImageBitmap(source, { imageOrientation: 'from-image' });
+  const scale = Math.min(1, max / Math.max(bmp.width, bmp.height));
+  const canvas = document.createElement('canvas');
+  canvas.width = Math.round(bmp.width * scale);
+  canvas.height = Math.round(bmp.height * scale);
+  canvas.getContext('2d').drawImage(bmp, 0, 0, canvas.width, canvas.height);
+  return new Promise((res, rej) => canvas.toBlob((b) => (b ? res(b) : rej(new Error('encode'))), 'image/jpeg', quality));
+}
 
 const urlCache = new Map();
-export async function photoURL(id) {
+/** Object URL for a photo; thumb=true serves a 480px copy, made once from the full photo. */
+export async function photoURL(id, thumb = false) {
   if (!id) return null;
-  if (urlCache.has(id)) return urlCache.get(id);
-  const blob = await getPhoto(id);
+  const key = thumb ? id + THUMB : id;
+  if (urlCache.has(key)) return urlCache.get(key);
+  let blob = await getPhoto(key);
+  if (!blob && thumb) {
+    const full = await getPhoto(id);
+    if (!full) return null;
+    blob = await resize(full, 480, 0.8).catch(() => full);
+    if (blob !== full) await putPhoto(key, blob);
+  }
   if (!blob) return null;
   const url = URL.createObjectURL(blob);
-  urlCache.set(id, url);
+  urlCache.set(key, url);
   return url;
 }
 
 /** Resize a camera photo to a 1600px JPEG before it is stored or synced. */
 export async function storePhotoFile(file) {
-  const bmp = await createImageBitmap(file, { imageOrientation: 'from-image' });
-  const scale = Math.min(1, 1600 / Math.max(bmp.width, bmp.height));
-  const canvas = document.createElement('canvas');
-  canvas.width = Math.round(bmp.width * scale);
-  canvas.height = Math.round(bmp.height * scale);
-  canvas.getContext('2d').drawImage(bmp, 0, 0, canvas.width, canvas.height);
-  const blob = await new Promise((res, rej) => canvas.toBlob((b) => (b ? res(b) : rej(new Error('encode'))), 'image/jpeg', 0.82));
   const id = uid();
-  await putPhoto(id, blob);
+  await putPhoto(id, await resize(file, 1600, 0.82));
   return id;
 }
 
