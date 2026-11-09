@@ -84,3 +84,27 @@ export function jar(count, max = 5, cls = 'jar') {
     <path d="M24 66c0-10 3-18 10-23" fill="none" stroke="var(--paper)" stroke-width="3.2" stroke-linecap="round" opacity=".8"/>
   </svg>`;
 }
+
+// ---------- margin doodles, stamps and clips (decorative, aria-hidden) ----------
+const LINE = 'fill="none" stroke="var(--doodle)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"';
+const DOODLES = {
+  swirl: [64, `<path ${LINE} d="M32 34c-3 0-4-3-2-5 3-2 7 0 7 4 0 5-6 8-11 6-6-2-8-10-4-15 5-6 15-6 20 0 6 7 3 18-5 22"/>`],
+  arrow: [64, `<path ${LINE} d="M6 48c10-2 14-12 10-20-3-6-11-4-10 2 1 7 14 9 24 3 8-5 14-13 18-22"/><path ${LINE} d="M41 9l7 2-1 7"/>`],
+  stars: [64, `<path ${LINE} d="M16 10l2.5 6 6 .6-4.6 4 1.4 6.4-5.3-3.3-5.3 3.3 1.4-6.4-4.6-4 6-.6zM44 34l1.6 3.8 4 .4-3 2.6.9 4-3.5-2.1-3.5 2.1.9-4-3-2.6 4-.4zM28 50v6M25 53h6"/>`],
+  loop: [64, `<ellipse ${LINE} stroke-dasharray="4 5" cx="32" cy="32" rx="26" ry="18" transform="rotate(-8 32 32)"/>`],
+  dots: [64, `<g fill="var(--doodle)"><circle cx="10" cy="12" r="1.8"/><circle cx="22" cy="8" r="1.4"/><circle cx="34" cy="14" r="2"/><circle cx="16" cy="24" r="1.4"/><circle cx="28" cy="26" r="1.8"/></g>`],
+};
+export const doodle = (name, cls = '') => { const [b, d] = DOODLES[name]; return `<svg viewBox="0 0 ${b} ${b}" class="margin-doodle ${cls}" aria-hidden="true" focusable="false">${d}</svg>`; };
+
+/** Wire paper clip holding a Polaroid. */
+export const paperClip = `<svg viewBox="0 0 24 60" class="clip" aria-hidden="true" focusable="false"><path d="M9 40V12a5 5 0 0 1 10 0v34a8 8 0 0 1-16 0V16" fill="none" stroke="var(--clip)" stroke-width="2.6" stroke-linecap="round"/></svg>`;
+
+/** Ink date stamp for a day page. */
+export function dateStamp(date) {
+  const d = new Date(date + 'T12:00');
+  const mon = d.toLocaleDateString('en-GB', { month: 'short' }).toUpperCase();
+  return `<svg viewBox="0 0 96 96" class="date-stamp" aria-hidden="true" focusable="false"><g fill="none" stroke="var(--stamp)" stroke-width="2.4"><circle cx="48" cy="48" r="44"/><circle cx="48" cy="48" r="36" stroke-dasharray="2 4"/></g><g fill="var(--stamp)" font-family="Gochi Hand, cursive" text-anchor="middle"><text x="48" y="45" font-size="30">${d.getDate()}</text><text x="48" y="67" font-size="15" letter-spacing="2">${mon} ${String(d.getFullYear()).slice(2)}</text></g></svg>`;
+}
+
+/** Postmark for the On This Day envelope. */
+export const postmark = (year) => `<svg viewBox="0 0 120 60" class="postmark" aria-hidden="true" focusable="false"><g fill="none" stroke="var(--stamp)" stroke-width="2"><circle cx="30" cy="30" r="24"/><path d="M58 18c8-5 16 5 24 0s16 5 24 0M58 30c8-5 16 5 24 0s16 5 24 0M58 42c8-5 16 5 24 0s16 5 24 0"/></g><text x="30" y="36" fill="var(--stamp)" font-family="Gochi Hand, cursive" font-size="16" text-anchor="middle">${year}</text></svg>`;

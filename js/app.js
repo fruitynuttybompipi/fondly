@@ -1,6 +1,7 @@
 import * as db from './db.js';
 import { mergeMoments, scheduleSync, syncNow, onSyncStatus, syncStatus, testConnection } from './sync.js';
-import { STICKERS, MOODS, sticker, mood, icons, todayCircle, tinyFlower, tinySparkle, tinyHeart, jar } from './art.js';
+import { STICKERS, MOODS, sticker, mood, icons, todayCircle, tinyFlower, tinySparkle, tinyHeart, jar, doodle, paperClip, dateStamp, postmark } from './art.js';
+import { seedDemo } from './demo.js';
 import { QUOTES, PROMPTS, AFFIRMATIONS, REMINDERS, dailyPick, greeting, EMPTY_OTD } from './content.js';
 
 // ---------- helpers ----------
@@ -112,6 +113,7 @@ function calendarHTML() {
   const onThisMonth = y === now.getFullYear() && m === now.getMonth();
   return `<section class="cal sheet" aria-label="Calendar">
     <span class="tape tape-r" aria-hidden="true"></span>
+    <span class="label-tab" aria-hidden="true">this month</span>
     <div class="cal-head">
       <button class="icon-btn" data-cal="-1" aria-label="Previous month">${icons.left}</button>
       <h2><span class="cal-month">${MONTHS[m]}</span> <span class="cal-year">${y}</span></h2>
@@ -143,12 +145,13 @@ function otdHTML() {
   const ago = ty - Number(sel.slice(0, 4));
   const ms = byDate.get(sel);
   return `<section class="otd sheet-slate" aria-labelledby="otd-h">
+    <span class="label-tab kraft" aria-hidden="true">from the vault</span>
     <h2 id="otd-h">A little memory from this day…</h2>
     <details class="envelope" ${sessionStorage.getItem('otd-open') === t ? 'open' : ''}>
       <summary>
         <span class="env-back" aria-hidden="true"></span>
         <span class="env-letter" aria-hidden="true">${ms.slice(0, 3).map((x, i) => `<span class="env-peek p${i}">${x.photoId ? photoImg(x) : (x.sticker ? sticker(x.sticker) : tinyHeart())}</span>`).join('')}</span>
-        <span class="env-front" aria-hidden="true"></span>
+        <span class="env-front" aria-hidden="true">${postmark(sel.slice(0, 4))}</span>
         <span class="env-flap" aria-hidden="true"></span>
         <span class="env-seal" aria-hidden="true">${tinyHeart('seal-heart')}</span>
         <span class="env-label"><b>${plural(years.length, 'year')} of memories</b><small>Tap to open</small></span>
@@ -181,7 +184,8 @@ function homeView() {
     <div class="home-side">
       ${all.length ? '' : `<aside class="welcome"><span class="tape tape-l" aria-hidden="true"></span><h2>Your diary is ready</h2><p>Each night, keep up to five little happy things: a few words, a photo if you like, a sticker and a mood. Tap <b>Capture</b> to start tonight's page.</p></aside>`}
       <section class="hello" aria-labelledby="hello-h">
-        ${(() => { const g = greeting(new Date().getHours()); return `<h1 id="hello-h">${g.text} ${sticker(g.art, 'greet-art')}</h1>`; })()}
+        ${(() => { const g = greeting(new Date().getHours()); return `<h1 id="hello-h">${g.text}&nbsp;${sticker(g.art, 'greet-art')}</h1>`; })()}
+        ${doodle('stars', 'md-hello')}
         <p class="affirm">${esc(dailyPick(AFFIRMATIONS, t))}</p>
         <aside class="reminder"><span class="tape tape-r" aria-hidden="true"></span><h2>Daily Little Reminder</h2><p>${esc(dailyPick(REMINDERS, t, 'r'))}</p></aside>
       </section>
@@ -214,7 +218,7 @@ function momentCard(m, date) {
       <div class="row"><button class="btn btn-ghost" data-act="keep">Keep it</button><button class="btn btn-danger" data-act="really-delete" data-id="${m.id}">${icons.trash} Delete</button></div></li>`;
   }
   return `<li class="moment ${m.photoId ? 'polaroid has-photo' : 'note'} ${tilt(m.id)}">
-    <span class="tape" aria-hidden="true"></span>
+    ${m.photoId ? paperClip : '<span class="tape" aria-hidden="true"></span>'}
     ${m.photoId ? `<div class="pol-frame">${photoImg(m, '', true)}</div>` : ''}
     ${m.prompt ? `<p class="moment-prompt">${esc(m.prompt)}</p>` : ''}
     <p class="moment-text">${esc(m.text)}</p>
@@ -264,6 +268,7 @@ function dayView(date) {
   return `<div class="day">
     <header class="day-head">
       <a class="back" href="#/">${icons.left}<span>Calendar</span></a>
+      ${dateStamp(date)}
       <h1 class="day-date"><time datetime="${date}">${fmtLong(date)}</time></h1>
       <p class="day-lead">${isToday ? "Today, I'm grateful for…" : 'That day, I was grateful for…'}</p>
       <p class="day-sub">It's the little things that make life beautiful.</p>
@@ -281,7 +286,7 @@ function dayView(date) {
   </div>`;
 }
 
-const DRAFT_KEY = 'lht-draft';
+const DRAFT_KEY = db.DEMO ? 'fondly-demo-draft' : 'lht-draft';
 const saveDraft = () => localStorage.setItem(DRAFT_KEY, JSON.stringify(editing));
 
 function startEditing(date, m) {
@@ -439,7 +444,7 @@ function journalList() {
 
 function journalView() {
   return `<div class="journal">
-    <header class="page-head"><h1>My Journal</h1><p>Every page you've kept, newest first.</p></header>
+    <header class="page-head">${doodle('arrow', 'md-head')}<h1>My Journal</h1><p>Every page you've kept, newest first.</p></header>
     <label class="search">${icons.search}<span class="sr">Search memories</span><input type="search" id="journal-q" placeholder="Search your memories…" value="${esc(journalQuery)}" autocomplete="off"></label>
     <div id="journal-list">${journalList()}</div>
   </div>`;
@@ -459,7 +464,7 @@ function galleryView() {
   const items = all.filter((m) => (galleryFilter.y === 'all' || m.date.startsWith(galleryFilter.y)) && (galleryFilter.m === 'all' || m.date.slice(5, 7) === galleryFilter.m)).sort((a, b) => b.date.localeCompare(a.date) || b.createdAt - a.createdAt);
   const opt = (v, label, cur) => `<option value="${v}" ${cur === v ? 'selected' : ''}>${label}</option>`;
   return `<div class="gallery">
-    <header class="page-head"><h1>Memory Gallery</h1><p>Your scrapbook of little happy things.</p></header>
+    <header class="page-head">${doodle('swirl', 'md-head')}<h1>Memory Gallery</h1><p>Your scrapbook of little happy things.</p></header>
     <div class="filters">
       <label><span>Year</span><select id="g-year">${opt('all', 'All years', galleryFilter.y)}${years.map((y) => opt(y, y, galleryFilter.y)).join('')}</select></label>
       <label><span>Month</span><select id="g-month">${opt('all', 'All months', galleryFilter.m)}${MONTHS.map((n, i) => opt(pad(i + 1), n, galleryFilter.m)).join('')}</select></label>
@@ -502,6 +507,7 @@ function statsView() {
     <div class="filters"><label><span>Year</span><select id="s-year">${years.map((y) => `<option ${y === yr ? 'selected' : ''}>${y}</option>`).join('')}</select></label></div>
     <section class="recap sheet-sage" aria-labelledby="recap-h">
       <span class="tape" aria-hidden="true"></span>
+      <span class="label-tab" aria-hidden="true">this year</span>
       <div class="recap-jar">${jar(inYear.length, 60, 'jar')}<p class="jar-tag">${inYear.length ? `${plural(inYear.length, 'little happy thing')} in ${yr}` : `An empty jar, ready for ${yr}`}</p></div>
       <div class="recap-notes">
         <h2 id="recap-h">Your ${yr}, in little things</h2>
@@ -554,8 +560,9 @@ async function settingsView() {
     <header class="page-head"><h1>Settings</h1><p>Where your diary lives, and how it looks.</p></header>
     <section class="sheet set-card" aria-labelledby="sync-h">
       <h2 id="sync-h">${icons.cloud} Sync with GitHub</h2>
+      ${syncChip(st)}
       <p>Your entries always save on this device first. Connect your <b>private</b> data repo to keep a copy and use the diary on your other devices.</p>
-      ${cfg?.token ? `<p class="sync-line">Connected to <b>${esc(cfg.repo)}</b> (${esc(cfg.branch)}). ${last ? `Last synced ${new Date(last).toLocaleString('en-GB', { dateStyle: 'medium', timeStyle: 'short' })}.` : 'Not synced yet.'}</p>
+      ${db.DEMO ? `<p class="sync-line">Sync is switched off in the demo diary, so sample entries never reach your GitHub.</p>` : cfg?.token ? `<p class="sync-line">Connected to <b>${esc(cfg.repo)}</b> (${esc(cfg.branch)}). ${last ? `Last synced ${new Date(last).toLocaleString('en-GB', { dateStyle: 'medium', timeStyle: 'short' })}.` : 'Not synced yet.'}</p>
         ${st.state === 'error' ? `<p class="error" role="alert">${esc(st.message)}</p>` : ''}
         <div class="row"><button class="btn btn-butter" data-act="sync-now">Sync now</button><button class="btn btn-ghost" data-act="disconnect">Disconnect this device</button></div>`
       : `<form class="sync-form" novalidate>
@@ -627,11 +634,15 @@ function bindSettings(root) {
 }
 
 // ---------- shell ----------
+const SYNC_LABEL = { off: 'Saved on this device only', syncing: 'Syncing…', ok: 'Synced', offline: 'Offline, saved here', error: 'Sync needs a look' };
+const syncChip = (st) => `<p id="sync-pill" class="sync-pill ${st.state}" role="status"><i aria-hidden="true"></i><span>${SYNC_LABEL[st.state]}</span></p>`;
+/** Live status lives in Settings; the gear only gets a dot when sync needs attention. */
 function syncPill(st = syncStatus()) {
-  const map = { off: 'On this device', syncing: 'Syncing…', ok: 'Synced', offline: 'Offline, saved here', error: 'Sync needs a look' };
+  $('.gear')?.classList.toggle('alert', st.state === 'error');
   const el = $('#sync-pill');
+  if (!el) return;
   el.className = `sync-pill ${st.state}`;
-  $('span', el).textContent = map[st.state];
+  $('span', el).textContent = SYNC_LABEL[st.state];
 }
 
 let renderQueued = false;
@@ -689,8 +700,30 @@ window.addEventListener('online', () => syncNow(db));
 document.addEventListener('visibilitychange', () => { if (!document.hidden) { applyTheme(); syncNow(db); } });
 setInterval(applyTheme, 10 * 60 * 1000);
 
+function demoBar() {
+  const bar = document.createElement('div');
+  bar.className = 'demo-bar';
+  bar.setAttribute('role', 'note');
+  bar.innerHTML = `<span><b>Demo diary.</b> Sample entries; your own diary is untouched.</span><button type="button" class="link-btn">Reset demo</button><a class="link-btn" href="./">Open my diary</a>`;
+  $('button', bar).addEventListener('click', async () => {
+    $('#view').innerHTML = '<p class="demo-loading">Refilling the demo jar…</p>';
+    await db.clearAll();
+    await seedDemo(db);
+    location.hash = '#/';
+    render();
+  });
+  $('.masthead').after(bar);
+}
+
 (async function start() {
   await applyTheme();
+  if (db.DEMO) {
+    demoBar();
+    if (!(await db.getMeta('demoSeeded'))) {
+      $('#view').innerHTML = '<p class="demo-loading">Filling the demo diary with a year of little happy things…</p>';
+      await seedDemo(db);
+    }
+  }
   const draft = JSON.parse(localStorage.getItem(DRAFT_KEY) || 'null');
   if (draft?.date && !isFuture(draft.date)) {
     editing = draft;

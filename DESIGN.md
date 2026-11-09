@@ -353,3 +353,13 @@ One house ease, `cubic-bezier(.16, 1, .3, 1)`, for lifts, tilts, reveals and dro
 - **Don't** use emoji or text glyphs as icons. Draw the doodle as SVG.
 - **Don't** set clay-deep as a text colour on light grounds; it is a stroke and fill accent.
 - **Don't** turn the evening theme into a dark-mode inversion of Polaroids and slips. They stay light paper with dark ink.
+
+
+## Scrapbook Touches
+
+Kept to one or two per screen, faint, and never on top of a control or text that must be read:
+
+- **Label tabs:** small butter (or kraft) paper labels in Gochi Hand that caption a section: "this month" on the calendar, "from the vault" on On This Day, "this year" on the stats jar. Decorative; the section heading carries the meaning.
+- **Margin doodles:** single-stroke stars, swirl and arrow in `--doodle` (ink at 38%) beside the greeting and page headings.
+- **Paper:** kraft (`--kraft` + grain) for the Daily Little Reminder and the demo bar, dotted grid on journal entries, a torn bottom edge on note-style moments, a folded corner on the capture card.
+- **Stamps and clips:** a round ink date stamp (`--stamp`) on each day page, a wire paper clip (`--clip`) holding photo moments, and a postmark with the year on the On This Day envelope.

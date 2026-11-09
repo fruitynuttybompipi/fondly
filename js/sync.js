@@ -76,7 +76,7 @@ export function syncNow(db) {
 
 async function runSync(db) {
   const cfg = await db.getMeta('sync');
-  if (!cfg?.token) return setStatus({ state: 'off' });
+  if (db.DEMO || !cfg?.token) return setStatus({ state: 'off' });
   if (!navigator.onLine) return setStatus({ state: 'offline' });
   setStatus({ state: 'syncing' });
 

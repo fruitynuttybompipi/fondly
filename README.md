@@ -10,6 +10,10 @@ A private little diary for up to five happy moments a day. Pastel scrapbook look
 
 Everything saves on the device first. Nothing leaves it unless you connect sync.
 
+## Demo
+
+Open `demo.html` (or add `?demo` to the address) for a sample diary with about a year of entries and painted photos. It uses its own storage, never syncs, and has a Reset button. Your own diary is not touched.
+
 ## Turn on sync (optional)
 
 1. Create a **private** repo for your data, for example `fondly-data`.

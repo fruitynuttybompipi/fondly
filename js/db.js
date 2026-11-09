@@ -1,11 +1,13 @@
 // Local-first storage in IndexedDB: moments, photo blobs, and small meta values.
 export const MAX_PER_DAY = 5;
+/** ?demo runs on its own sample database; the real diary is never opened. */
+export const DEMO = new URLSearchParams(location.search).has('demo');
 
 let dbPromise;
 function open() {
   dbPromise ??= new Promise((resolve, reject) => {
     // Internal DB name kept from the app's first name so existing entries stay readable.
-    const req = indexedDB.open('little-happy-things', 1);
+    const req = indexedDB.open(DEMO ? 'fondly-demo' : 'little-happy-things', 1);
     req.onupgradeneeded = () => {
       const db = req.result;
       const m = db.createObjectStore('moments', { keyPath: 'id' });
@@ -134,6 +136,13 @@ export async function storePhotoFile(file) {
   const id = uid();
   await putPhoto(id, await resize(file, 1600, 0.82));
   return id;
+}
+
+/** Demo only: empty every store before re-seeding. */
+export async function clearAll() {
+  if (!DEMO) throw new Error('clearAll is only for the demo diary');
+  for (const store of ['moments', 'photos', 'meta']) await tx(store, 'readwrite', (s) => s.clear());
+  urlCache.clear();
 }
 
 // ---- meta ----
