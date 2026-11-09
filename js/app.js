@@ -22,12 +22,26 @@ const plural = (n, one, many = one + 's') => `${n} ${n === 1 ? one : many}`;
 const YEARS_AGO = ['', 'One Year Ago', 'Two Years Ago', 'Three Years Ago', 'Four Years Ago', 'Five Years Ago'];
 
 let toastTimer;
-function toast(msg) {
+/** action: { label, run } adds one button; the toast then stays long enough to reach it. */
+function toast(msg, action) {
   const el = $('#toast');
-  el.textContent = msg;
+  el.replaceChildren(msg);
+  if (action) {
+    const b = Object.assign(document.createElement('button'), { type: 'button', className: 'toast-act', textContent: action.label });
+    b.addEventListener('click', () => { el.classList.remove('show'); action.run(); }, { once: true });
+    el.append(b);
+  }
   el.classList.add('show');
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => el.classList.remove('show'), 3200);
+  toastTimer = setTimeout(() => el.classList.remove('show'), action ? 7000 : 3200);
+}
+
+// Milestones are read from real saved moments, never invented.
+const MILESTONES = { 1: 'Your very first little happy thing is on this page. This is where it starts ♡', 10: 'Ten little happy things kept. The jar is getting cozy.', 25: 'Twenty-five little happy things. That is a lot of noticing.', 50: 'Fifty little happy things, and this page holds the fiftieth.', 100: 'Your 100th little happy thing is on this page ♡', 250: '250 little happy things. Look at you, collector.', 365: '365 little happy things: a whole year of them, in moments.', 500: '500 little happy things. What a jar.', 1000: '1,000 little happy things. Thank you for noticing every one.' };
+function milestoneFor(date) {
+  const order = [...all].sort((a, b) => a.date.localeCompare(b.date) || a.createdAt - b.createdAt);
+  for (let i = 0; i < order.length; i++) if (order[i].date === date && MILESTONES[i + 1]) return MILESTONES[i + 1];
+  return null;
 }
 
 // ---------- theme: evening paper after dark ----------
@@ -165,6 +179,7 @@ function homeView() {
   return `<div class="home">
     <div class="home-main">${calendarHTML()}${captureHTML()}</div>
     <div class="home-side">
+      ${all.length ? '' : `<aside class="welcome"><span class="tape tape-l" aria-hidden="true"></span><h2>Your diary is ready</h2><p>Each night, keep up to five little happy things: a few words, a photo if you like, a sticker and a mood. Tap <b>Capture</b> to start tonight's page.</p></aside>`}
       <section class="hello" aria-labelledby="hello-h">
         ${(() => { const g = greeting(new Date().getHours()); return `<h1 id="hello-h">${g.text} ${sticker(g.art, 'greet-art')}</h1>`; })()}
         <p class="affirm">${esc(dailyPick(AFFIRMATIONS, t))}</p>
@@ -254,7 +269,7 @@ function dayView(date) {
       <p class="day-sub">It's the little things that make life beautiful.</p>
     </header>
     <aside class="jar-panel" aria-live="polite">
-      ${jar(n)}
+      <span class="jar-wrap">${jar(n)}${full ? tinySparkle('jar-glint') : ''}</span>
       ${full ? `<p class="jar-full">Your happiness jar is full for today! ♡</p>` : `<p class="jar-count"><b>${n}/5</b> little happy things collected</p>`}
     </aside>
     <ol class="moments">
@@ -303,7 +318,18 @@ function bindDay(root, date) {
     }
     if (act === 'delete') { confirmingDelete = b.dataset.id; await render(); $('[data-act="keep"]', root)?.focus(); }
     if (act === 'keep') { confirmingDelete = null; await render(); }
-    if (act === 'really-delete') { confirmingDelete = null; await db.deleteMoment(b.dataset.id); toast('Let go gently ♡'); }
+    if (act === 'really-delete') {
+      confirmingDelete = null;
+      const before = await db.deleteMoment(b.dataset.id);
+      let undone = false;
+      toast('Let go gently ♡', { label: 'Undo', run: async () => {
+        undone = true;
+        await db.updateMoment(before.id, { deleted: false, text: before.text, photoId: before.photoId });
+        toast('Brought back ♡');
+      } });
+      // The photo waits out the undo window before it is removed for good.
+      if (before?.photoId) setTimeout(() => { if (!undone) db.deletePhoto(before.photoId); }, 8000);
+    }
     if (act === 'save-day') { doneQuote = null; location.hash = `#/done/${date}`; }
   });
   root.addEventListener('input', (ev) => {
@@ -348,9 +374,11 @@ function bindDay(root, date) {
       editing = null;
       localStorage.removeItem(DRAFT_KEY);
       const n = (await db.momentsFor(date)).length;
-      toast(n >= db.MAX_PER_DAY ? 'Your happiness jar is full for today! ♡' : `Kept safe ♡ ${n}/5`);
       await render();
-      root.querySelector('.jar-star:last-of-type')?.classList.add('drop');
+      // The new paper star falls into the jar, and the jar takes the weight.
+      $('.jar-panel .jar-star:last-of-type')?.classList.add('drop');
+      $('.jar-panel .jar-wrap')?.classList.add('bump', ...(n >= db.MAX_PER_DAY ? ['just-full'] : []));
+      navigator.vibrate?.(12);
     } catch (err) {
       toast(err.message === 'jar-full' ? 'Your happiness jar is full for today! ♡' : 'Could not save just now. Your words are still here.');
     }
@@ -373,6 +401,7 @@ function doneView(date) {
     <div class="done-card">
       <span class="tape tape-l" aria-hidden="true"></span><span class="tape tape-r" aria-hidden="true"></span>
       <h1 class="done-lead">${n ? `${plural(n, 'little happy thing')}, kept safe.` : 'Your page is saved.'}</h1>
+      ${milestoneFor(date) ? `<p class="milestone">${tinyHeart('ms-heart')}<span>${esc(milestoneFor(date))}</span></p>` : ''}
       <blockquote class="done-quote">${esc(doneQuote)}</blockquote>
       ${jar(n, 5, 'jar small')}
       <div class="done-actions"><a class="btn btn-butter big" href="#/">Back to calendar</a><a class="link-btn" href="#/day/${date}">See my page again</a></div>

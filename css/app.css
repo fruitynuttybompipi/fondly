@@ -145,6 +145,9 @@ main { padding: 4px 16px calc(110px + env(safe-area-inset-bottom)); max-width: 1
   max-width: calc(100vw - 32px); text-align: center;
 }
 #toast.show { opacity: 1; transform: translate(-50%, 0); }
+#toast { display: flex; align-items: center; gap: 12px; white-space: nowrap; }
+#toast.show { pointer-events: auto; }
+.toast-act { min-height: 44px; padding: 0 14px; margin: -8px -10px -8px 0; border: 0; border-radius: 999px; font: 700 var(--fs-sm) var(--body); background: var(--butter); color: var(--ink-paper); cursor: pointer; }
 
 @media (min-width: 960px) {
   body { display: grid; grid-template-columns: 236px minmax(0, 1fr); grid-template-rows: auto 1fr; }
@@ -346,7 +349,14 @@ svg.jar { width: 92px; height: auto; flex: none; overflow: visible; }
 .jar-full { color: var(--ink); }
 .jar-star { transform-box: fill-box; }
 .jar-star.drop, .done .jar-star { animation: drop .9s var(--ease) backwards; animation-delay: calc(var(--i) * 90ms); }
-@keyframes drop { from { opacity: 0; translate: 0 -70px; } 60% { opacity: 1; } }
+@keyframes drop { from { opacity: 0; translate: 0 -90px; rotate: -40deg; } 55% { opacity: 1; } 75% { translate: 0 4px; } }
+.jar-wrap { position: relative; display: inline-block; flex: none; }
+.jar-wrap.bump svg.jar { animation: bump .7s .45s var(--ease); transform-origin: 50% 100%; }
+@keyframes bump { 30% { transform: rotate(-4deg) scale(1.03, .97); } 60% { transform: rotate(3deg); } }
+svg.jar-glint { position: absolute; top: -6px; right: -10px; width: 26px; height: 26px; }
+.jar-wrap.just-full svg.jar-glint { animation: glint 1s 1s var(--ease) backwards; }
+@keyframes glint { from { opacity: 0; scale: .2; rotate: -90deg; } 60% { opacity: 1; scale: 1.3; } }
+@media (min-width: 960px) { svg.jar-glint { width: 34px; height: 34px; } }
 
 .moments { list-style: none; padding: 0; margin: 0; display: grid; gap: 26px; }
 @media (min-width: 760px) { .moments, .add-moment { max-width: 640px; } .moment.polaroid { max-width: 520px; } .moments > li:nth-child(even) { margin-left: 40px; } }
@@ -434,6 +444,11 @@ svg.moment-sticker { position: absolute; right: 2px; top: -14px; width: 54px; he
   padding: 44px 26px 30px; background: var(--card); border-radius: var(--r-organic);
   box-shadow: 0 30px 50px -30px rgb(var(--shadow) / .7); animation: rise .8s var(--ease) backwards;
 }
+.milestone { display: flex; align-items: center; gap: 10px; max-width: 34ch; padding: 10px 16px; background: var(--butter); color: var(--ink-paper); border-radius: 2px 6px 3px 5px; rotate: -1.5deg; text-align: left; box-shadow: 0 6px 12px -8px rgb(var(--shadow) / .5); }
+svg.ms-heart { width: 26px; height: 26px; flex: none; }
+.welcome { position: relative; padding: 24px 18px 16px; background: var(--card); border-radius: 6px 18px 8px 14px; rotate: -.6deg; box-shadow: 0 14px 22px -16px rgb(var(--shadow) / .6); }
+.welcome h2 { font-size: var(--fs-md); margin-bottom: 4px; }
+.welcome p { color: var(--ink-soft); }
 .done-lead { font: 400 var(--fs-md) var(--hand); color: var(--ink-soft); }
 .done-quote { margin: 0; font: 400 var(--fs-display)/1.18 var(--hand); text-wrap: balance; color: var(--ink); }
 .done svg.jar.small { width: 84px; }

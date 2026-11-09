@@ -77,12 +77,12 @@ export async function updateMoment(id, fields) {
   changed(date);
 }
 
-/** Soft delete: the tombstone lets the delete win on other devices. */
+/** Soft delete: the tombstone lets the delete win on other devices. Returns the old row so it can be undone; the caller removes the photo once undo has passed. */
 export async function deleteMoment(id) {
-  let photoId;
-  await tx('moments', 'readonly', async (s) => { photoId = (await req(s.get(id)))?.photoId; });
+  let before;
+  await tx('moments', 'readonly', async (s) => { before = await req(s.get(id)); });
   await updateMoment(id, { deleted: true, text: '', photoId: null });
-  if (photoId) await deletePhoto(photoId);
+  return before;
 }
 
 /** Overwrite with merged rows coming from sync (no dirty marking). */
