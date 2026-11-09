@@ -37,7 +37,7 @@ async function applyTheme() {
   // shortcut: fixed 7pm–6am window stands in for real sunset; use a sun calculator if the owner travels far.
   const evening = pref === 'evening' || (pref === 'auto' && (h >= 19 || h < 6));
   document.documentElement.dataset.theme = evening ? 'evening' : 'day';
-  $('meta[name="theme-color"]').content = evening ? '#2b2342' : '#fff3c4';
+  $('meta[name="theme-color"]').content = evening ? '#1f2a33' : '#fff3c4';
 }
 
 // ---------- state ----------
@@ -118,7 +118,7 @@ function otdHTML() {
   const [ty, md] = [Number(t.slice(0, 4)), t.slice(5)];
   const years = [...byDate.keys()].filter((d) => d.slice(5) === md && Number(d.slice(0, 4)) < ty).sort().reverse();
   if (!years.length) {
-    return `<section class="otd otd-empty sheet-lav" aria-labelledby="otd-h">
+    return `<section class="otd otd-empty sheet-slate" aria-labelledby="otd-h">
       <h2 id="otd-h">On This Day… ♡</h2>
       <p>${esc(EMPTY_OTD)}</p>${tinySparkle('otd-spark')}
     </section>`;
@@ -126,7 +126,7 @@ function otdHTML() {
   const sel = years.includes(otdYear) ? otdYear : years[0];
   const ago = ty - Number(sel.slice(0, 4));
   const ms = byDate.get(sel);
-  return `<section class="otd sheet-lav" aria-labelledby="otd-h">
+  return `<section class="otd sheet-slate" aria-labelledby="otd-h">
     <h2 id="otd-h">A little memory from this day…</h2>
     <details class="envelope" ${sessionStorage.getItem('otd-open') === t ? 'open' : ''}>
       <summary>
@@ -143,7 +143,7 @@ function otdHTML() {
         <p class="otd-date">${fmtDate(sel)}</p>
         <p class="otd-sub">Look how far you've come! Here's what made you smile ${ago === 1 ? 'one year' : `${ago} years`} ago.</p>
         <ul class="otd-list">${ms.map((x) => `<li class="mini-polaroid ${tilt(x.id)}${x.photoId ? ' has-photo' : ' note'}">${photoImg(x)}<p>${esc(x.text)}</p><span class="mini-meta">${x.mood ? mood(x.mood) : ''}${x.sticker ? sticker(x.sticker) : ''}</span></li>`).join('')}</ul>
-        <a class="btn btn-lav" href="#/day/${sel}">Revisit This Memory</a>
+        <a class="btn btn-slate" href="#/day/${sel}">Revisit This Memory</a>
       </div>
     </details>
   </section>`;
@@ -232,7 +232,7 @@ function editorHTML(date) {
       </fieldset>
       <div class="editor-actions">
         <button type="button" class="btn btn-ghost" data-act="cancel">Cancel</button>
-        <button type="submit" class="btn btn-pink" ${e.text.trim() || e.photoId ? '' : 'disabled'}>Keep it ♡</button>
+        <button type="submit" class="btn btn-clay" ${e.text.trim() || e.photoId ? '' : 'disabled'}>Keep it ♡</button>
       </div>
     </form>
   </li>`;
@@ -388,7 +388,7 @@ function highlight(text, q) {
 
 function journalList() {
   const q = journalQuery.trim().toLowerCase();
-  const matches = (m) => !q || m.text.toLowerCase().includes(q) || (m.mood && MOODS[m.mood].label.toLowerCase().includes(q)) || (m.sticker && STICKERS[m.sticker].label.toLowerCase().includes(q)) || fmtDate(m.date).toLowerCase().includes(q);
+  const matches = (m) => !q || m.text.toLowerCase().includes(q) || (m.mood && MOODS[m.mood].label.toLowerCase().includes(q)) || STICKERS[m.sticker]?.label.toLowerCase().includes(q) || fmtDate(m.date).toLowerCase().includes(q);
   const days = [...byDate.entries()].map(([d, ms]) => [d, ms.filter(matches)]).filter(([, ms]) => ms.length).sort((a, b) => b[0].localeCompare(a[0]));
   if (!all.length) return `<div class="empty sheet">${tinySparkle('empty-deco')}<p>Your journal is waiting for its very first little thing.</p><a class="btn btn-butter" href="#/day/${today()}">Start today's page</a></div>`;
   if (!days.length) return `<div class="empty sheet"><p>Nothing matches “${esc(journalQuery)}” yet. Try another word, like a name or a place.</p></div>`;
@@ -464,7 +464,7 @@ function statsView() {
   const perMonth = MONTHS.map((_, i) => inYear.filter((m) => m.date.slice(5, 7) === pad(i + 1)).length);
   const maxMonth = Math.max(...perMonth);
   const topMood = topKey(inYear, 'mood');
-  const topSticker = topKey(inYear, 'sticker');
+  const topSticker = topKey(inYear.filter((m) => STICKERS[m.sticker]), 'sticker'); // retired stickers don't count
   const busiest = maxMonth ? MONTHS[perMonth.indexOf(maxMonth)] : null;
   return `<div class="stats">
     <header class="page-head"><h1>My Little Stats</h1><p>A gentle look back, no pressure.</p></header>
@@ -486,7 +486,7 @@ function statsView() {
   </div>`;
 }
 
-const SLIP_COLORS = ['butter', 'blush', 'lavender', 'baby', 'sage', 'peach'];
+const SLIP_COLORS = ['butter', 'clay', 'slate', 'sky', 'sage', 'mint'];
 function memoryJarHTML() {
   if (!all.length) return `<section class="memory-jar sheet" aria-labelledby="mj-h"><h2 id="mj-h">Memory Jar</h2><p>Every happy thing you keep is folded into this jar. It's waiting for the first one.</p></section>`;
   const p = pulled && all.find((m) => m.id === pulled);
@@ -496,7 +496,7 @@ function memoryJarHTML() {
   return `<section class="memory-jar sheet" aria-labelledby="mj-h">
     <span class="tape tape-r" aria-hidden="true"></span>
     <div class="mj-head"><div><h2 id="mj-h">Memory Jar</h2><p>Every happy thing you've ever kept: <b>${all.length}</b>.</p></div>
-      <button class="btn btn-lav" data-act="pull">${icons.shuffle} Pull out a memory</button></div>
+      <button class="btn btn-slate" data-act="pull">${icons.shuffle} Pull out a memory</button></div>
     ${p ? `<a class="pulled slip slip-${SLIP_COLORS[all.indexOf(p) % 6]}" href="#/day/${p.date}" aria-live="polite">${p.photoId ? `<span class="thumb has-photo">${photoImg(p)}</span>` : ''}<span><b>${esc(p.text || 'A photo memory')}</b><small>${fmtDate(p.date)} · open this page</small></span></a>` : ''}
     <ul class="slips">${shown.map((m, i) => `<li><a class="slip slip-${SLIP_COLORS[i % 6]} ${tilt(m.id)}" href="#/day/${m.date}" title="${fmtDate(m.date)}">${esc(m.text || 'a photo')}</a></li>`).join('')}</ul>
     ${slips.length > shown.length ? `<p class="hint">Showing your newest ${shown.length}. Search in My Journal to find older ones.</p>` : ''}
@@ -528,7 +528,7 @@ async function settingsView() {
         ${st.state === 'error' ? `<p class="error" role="alert">${esc(st.message)}</p>` : ''}
         <div class="row"><button class="btn btn-butter" data-act="sync-now">Sync now</button><button class="btn btn-ghost" data-act="disconnect">Disconnect this device</button></div>`
       : `<form class="sync-form" novalidate>
-          <label>Data repo <small>owner/name, must be private</small><input name="repo" required placeholder="yourname/little-happy-things-data" autocomplete="off" autocapitalize="off" spellcheck="false"></label>
+          <label>Data repo <small>owner/name, must be private</small><input name="repo" required placeholder="yourname/fondly-data" autocomplete="off" autocapitalize="off" spellcheck="false"></label>
           <label>Token <small>fine-grained, Contents read and write, this repo only</small><input name="token" type="password" required autocomplete="off" spellcheck="false"></label>
           <p class="error" role="alert" hidden></p>
           <button class="btn btn-butter" type="submit">Connect</button>
@@ -578,7 +578,7 @@ function bindSettings(root) {
     if (act === 'disconnect') { await db.setMeta('sync', null); await db.setMeta('remoteShas', {}); toast('This device is no longer syncing. Entries stay here.'); render(); }
     if (act === 'export') {
       const data = await db.exportAll();
-      const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(new Blob([JSON.stringify(data)], { type: 'application/json' })), download: `little-happy-things-${today()}.json` });
+      const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(new Blob([JSON.stringify(data)], { type: 'application/json' })), download: `fondly-${today()}.json` });
       a.click();
       setTimeout(() => URL.revokeObjectURL(a.href), 5000);
     }
@@ -632,8 +632,8 @@ async function render() {
   fresh.className = `view view-${keyOf}`;
   fresh.innerHTML = html;
   view.replaceChildren(fresh);
-  const titles = { home: 'Little Happy Things', day: fmtLong(param || today()), done: 'Kept safe ♡', journal: 'My Journal', gallery: 'Memory Gallery', stats: 'My Little Stats', settings: 'Settings' };
-  document.title = keyOf === 'home' ? titles.home : `${titles[keyOf] || ''} · Little Happy Things`;
+  const titles = { home: 'Fondly', day: fmtLong(param || today()), done: 'Kept safe ♡', journal: 'My Journal', gallery: 'Memory Gallery', stats: 'My Little Stats', settings: 'Settings' };
+  document.title = keyOf === 'home' ? titles.home : `${titles[keyOf] || ''} · Fondly`;
   ({ home: bindHome, journal: bindJournal, gallery: bindGallery, stats: bindStats, settings: bindSettings }[keyOf])?.(fresh);
   if (keyOf === 'day') bindDay(fresh, param);
   hydratePhotos(fresh);

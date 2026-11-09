@@ -4,6 +4,7 @@ export const MAX_PER_DAY = 5;
 let dbPromise;
 function open() {
   dbPromise ??= new Promise((resolve, reject) => {
+    // Internal DB name kept from the app's first name so existing entries stay readable.
     const req = indexedDB.open('little-happy-things', 1);
     req.onupgradeneeded = () => {
       const db = req.result;
@@ -138,12 +139,12 @@ export async function exportAll() {
   const moments = await allMomentsRaw();
   const photos = {};
   for (const id of await photoKeys()) photos[id] = await toDataURL(await getPhoto(id));
-  return { app: 'little-happy-things', version: 1, exportedAt: new Date().toISOString(), moments, photos };
+  return { app: 'fondly', version: 1, exportedAt: new Date().toISOString(), moments, photos };
 }
 
 /** Import merges by id; the newer updatedAt wins, so a re-import never loses newer edits. */
 export async function importAll(data, merge) {
-  if (data?.app !== 'little-happy-things' || !Array.isArray(data.moments)) throw new Error('This file is not a Little Happy Things backup.');
+  if (!['fondly', 'little-happy-things'].includes(data?.app) || !Array.isArray(data.moments)) throw new Error('This file is not a Fondly backup.');
   for (const [id, url] of Object.entries(data.photos || {})) await putPhoto(id, await (await fetch(url)).blob());
   const local = await allMomentsRaw();
   const merged = merge(local, data.moments);

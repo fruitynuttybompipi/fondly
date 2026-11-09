@@ -5,7 +5,7 @@ primary_target: "index.html"
 related_targets: []
 ---
 
-# Surface: Little Happy Things app (index.html, all routes)
+# Surface: Fondly app (index.html, all routes)
 
 Mode: Operate shell with Experience moments (save reward, On This Day). Audience: the owner, on a phone at night, collecting up to 5 happy moments, then browsing memories. Visual world pinned by the owner's brief (pastel scrapbook); no concept roll was run.
 
@@ -13,7 +13,7 @@ Mode: Operate shell with Experience moments (save reward, On This Day). Audience
 
 THESIS: A pocket scrapbook you finish every night. Each route is a page of coloured paper; each moment is a taped note or Polaroid. Refuses the habit-tracker dashboard: no streaks, rings, charts or KPI tiles.
 
-OWN-WORLD: Paper grounds per section (butter home, blush journal and day page, baby-blue gallery, sage stats, lavender On This Day envelope) over cream base; plum ink #463A4F text and doodle outlines. Gochi Hand headings, Yellowtail script for wordmark, dates and quotes, Shantell Sans body. Washi tape strips, Polaroid frames, authored SVG doodle stickers and mood faces with plum outlines, paper grain. Evening theme after dark: deep indigo paper, pastels become ink.
+OWN-WORLD: Paper grounds per section (butter home, oat journal and day page, sky gallery, sage stats, slate settings and On This Day) over cream base; slate ink #2f3b44 text and doodle outlines. Two faces: Gochi Hand as the main voice (wordmark, headings, dates, quotes, moment text) and Shantell Sans for body and UI. Washi tape, Polaroid frames, kraft envelope, authored neutral SVG stickers (sky, nature, coffee, books, music) and mood faces, paper grain. Evening theme after dark: deep navy-slate paper, pastels become ink. Owner asked for a gender-neutral palette: no pink/lavender lead.
 
 STORY: Open, see the month with tiny photos in day cells, tap capture, drop up to five moments into the jar, save, receive a quote. Later, an envelope brings back the same date from past years.
 

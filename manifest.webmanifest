@@ -1,6 +1,6 @@
 {
-  "name": "Little Happy Things",
-  "short_name": "Happy Things",
+  "name": "Fondly",
+  "short_name": "Fondly",
   "description": "A private little diary for up to five happy moments a day.",
   "start_url": "./",
   "scope": "./",

@@ -1,4 +1,4 @@
-# Little Happy Things
+# Fondly
 
 A private little diary for up to five happy moments a day. Pastel scrapbook look, works offline, installs to your phone's home screen, and can sync to a private GitHub repo you own.
 
@@ -12,9 +12,9 @@ Everything saves on the device first. Nothing leaves it unless you connect sync.
 
 ## Turn on sync (optional)
 
-1. Create a **private** repo for your data, for example `little-happy-things-data`.
+1. Create a **private** repo for your data, for example `fondly-data`.
 2. Create a fine-grained token: GitHub → Settings → Developer settings → Personal access tokens → Fine-grained tokens. Give it access to that one repo only, with **Contents: Read and write**.
-3. In the app, open Settings (the slider icon) and enter `yourname/little-happy-things-data` and the token.
+3. In the app, open Settings (the slider icon) and enter `yourname/fondly-data` and the token.
 
 Do this on each device. If the same day is edited on two devices, the newest edit of each moment wins.
 
@@ -34,4 +34,4 @@ When you change a shipped file, bump `VERSION` in `sw.js` so installed copies up
 
 ## Credits
 
-Fonts: Shantell Sans, Gochi Hand, Yellowtail (SIL Open Font License / Apache 2.0, via Fontsource). Stickers, mood faces and icons are drawn for this app.
+Fonts: Gochi Hand and Shantell Sans (SIL Open Font License, via Fontsource). Stickers, mood faces and icons are drawn for this app.
