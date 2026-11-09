@@ -32,10 +32,16 @@ function toast(msg, action) {
     b.addEventListener('click', () => { el.classList.remove('show'); action.run(); }, { once: true });
     el.append(b);
   }
+  if (action) el.append(Object.assign(document.createElement('span'), { className: 'sr', textContent: ` ${action.label} available.` }));
   el.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => el.classList.remove('show'), action ? 7000 : 3200);
+  const ms = action ? 7000 : 3200;
+  toastHide = () => { clearTimeout(toastTimer); toastTimer = setTimeout(() => el.classList.remove('show'), ms); };
+  toastHide();
 }
+let toastHide = () => {};
+// Time stops while the toast is hovered or focused (WCAG 2.2.1), and restarts in full on leave.
+for (const ev of ['pointerenter', 'focusin']) document.getElementById('toast').addEventListener(ev, () => clearTimeout(toastTimer));
+for (const ev of ['pointerleave', 'focusout']) document.getElementById('toast').addEventListener(ev, () => toastHide());
 
 // Milestones are read from real saved moments, never invented.
 const MILESTONES = { 1: 'Your very first little happy thing is on this page. This is where it starts ♡', 10: 'Ten little happy things kept. The jar is getting cozy.', 25: 'Twenty-five little happy things. That is a lot of noticing.', 50: 'Fifty little happy things, and this page holds the fiftieth.', 100: 'Your 100th little happy thing is on this page ♡', 250: '250 little happy things. Look at you, collector.', 365: '365 little happy things: a whole year of them, in moments.', 500: '500 little happy things. What a jar.', 1000: '1,000 little happy things. Thank you for noticing every one.' };
@@ -66,6 +72,9 @@ let confirmingDelete = null;
 let otdYear = null;
 let doneQuote = null;
 let journalQuery = '';
+const PAGE = 60;
+let journalLimit = PAGE;
+let galleryLimit = PAGE;
 let galleryFilter = { y: 'all', m: 'all' };
 let statsYear = new Date().getFullYear();
 let pulled = null;
@@ -80,11 +89,16 @@ async function load() {
 const photoImg = (m, cls = '', full = false) => (m.photoId ? `<img class="${cls}" data-photo="${esc(m.photoId)}"${full ? ' data-full' : ''} loading="lazy" decoding="async" alt="${esc(m.text ? 'Photo: ' + m.text.slice(0, 80) : 'Photo of a happy moment')}">` : '');
 const moodTag = (m) => (m.mood ? `<span class="mood-tag">${mood(m.mood)}<span>${MOODS[m.mood].label}</span></span>` : '');
 
-async function hydratePhotos(root = document) {
-  for (const img of $$('img[data-photo]', root)) {
-    const url = await db.photoURL(img.dataset.photo, !('full' in img.dataset));
-    if (url) img.src = url; else img.closest('.has-photo')?.classList.add('photo-missing');
-  }
+async function showPhoto(img) {
+  const url = await db.photoURL(img.dataset.photo, !('full' in img.dataset));
+  if (url) img.src = url; else img.closest('.has-photo')?.classList.add('photo-missing');
+}
+// Photos load as they come near the screen, so long lists don't decode everything at once.
+const photoIO = 'IntersectionObserver' in window
+  ? new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { photoIO.unobserve(e.target); showPhoto(e.target); } }), { rootMargin: '400px' })
+  : null;
+function hydratePhotos(root = document) {
+  for (const img of $$('img[data-photo]:not([src])', root)) photoIO ? photoIO.observe(img) : showPhoto(img);
 }
 
 // ---------- HOME ----------
@@ -422,14 +436,27 @@ function highlight(text, q) {
   return esc(text.slice(0, i)) + '<mark>' + esc(text.slice(i, i + q.length)) + '</mark>' + esc(text.slice(i + q.length));
 }
 
+const moreButton = (which) => `<button type="button" class="btn btn-ghost more" data-more="${which}">Show more memories</button>`;
+
+/** Loads the next page when the "more" button nears the viewport; the button still works by tap or keyboard. */
+function autoMore(root, onMore) {
+  const btn = $('[data-more]', root);
+  if (!btn) return;
+  btn.addEventListener('click', onMore, { once: true });
+  const io = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { io.disconnect(); btn.click(); } }, { rootMargin: '600px' });
+  io.observe(btn);
+}
+
 function journalList() {
   const q = journalQuery.trim().toLowerCase();
   const matches = (m) => !q || m.text.toLowerCase().includes(q) || (m.mood && MOODS[m.mood].label.toLowerCase().includes(q)) || STICKERS[m.sticker]?.label.toLowerCase().includes(q) || fmtDate(m.date).toLowerCase().includes(q);
   const days = [...byDate.entries()].map(([d, ms]) => [d, ms.filter(matches)]).filter(([, ms]) => ms.length).sort((a, b) => b[0].localeCompare(a[0]));
   if (!all.length) return `<div class="empty sheet">${tinySparkle('empty-deco')}<p>Your journal is waiting for its very first little thing.</p><a class="btn btn-butter" href="#/day/${today()}">Start today's page</a></div>`;
   if (!days.length) return `<div class="empty sheet"><p>Nothing matches “${esc(journalQuery)}” yet. Try another word, like a name or a place.</p></div>`;
-  let out = '', month = '';
+  let out = '', month = '', shown = 0;
   for (const [d, ms] of days) {
+    if (shown >= journalLimit) { out += `</ol>${moreButton('journal')}`; return out; }
+    shown += ms.length;
     const mo = d.slice(0, 7);
     if (mo !== month) { out += `${month ? '</ol>' : ''}<h2 class="month-h">${MONTHS[Number(d.slice(5, 7)) - 1]} ${d.slice(0, 4)}</h2><ol class="entries">`; month = mo; }
     const dt = parse(d);
@@ -451,11 +478,19 @@ function journalView() {
 }
 
 function bindJournal(root) {
+  const list = $('#journal-list', root);
+  const paint = () => {
+    list.innerHTML = journalList();
+    hydratePhotos(list);
+    autoMore(list, () => { journalLimit += PAGE; paint(); });
+  };
+  let wait;
   $('#journal-q', root).addEventListener('input', (e) => {
-    journalQuery = e.target.value;
-    $('#journal-list', root).innerHTML = journalList();
-    hydratePhotos($('#journal-list', root));
+    clearTimeout(wait);
+    // Search once typing pauses, not on every key.
+    wait = setTimeout(() => { journalQuery = e.target.value; journalLimit = PAGE; paint(); }, 150);
   });
+  autoMore(list, () => { journalLimit += PAGE; paint(); });
 }
 
 // ---------- GALLERY ----------
@@ -469,20 +504,22 @@ function galleryView() {
       <label><span>Year</span><select id="g-year">${opt('all', 'All years', galleryFilter.y)}${years.map((y) => opt(y, y, galleryFilter.y)).join('')}</select></label>
       <label><span>Month</span><select id="g-month">${opt('all', 'All months', galleryFilter.m)}${MONTHS.map((n, i) => opt(pad(i + 1), n, galleryFilter.m)).join('')}</select></label>
     </div>
-    ${items.length ? `<ul class="masonry">${items.map((m) => `<li><a class="g-item ${m.photoId ? 'polaroid has-photo' : 'note'} ${tilt(m.id)}" href="#/day/${m.date}">
+    ${items.length ? `<ul class="masonry">${items.slice(0, galleryLimit).map((m) => `<li><a class="g-item ${m.photoId ? 'polaroid has-photo' : 'note'} ${tilt(m.id)}" href="#/day/${m.date}">
       <span class="tape" aria-hidden="true"></span>
       ${m.photoId ? `<span class="pol-frame">${photoImg(m)}</span>` : ''}
       <p>${esc(m.text)}</p>
       <span class="g-meta"><time datetime="${m.date}">${fmtDate(m.date)}</time>${m.mood ? mood(m.mood, 'mood xs') : ''}</span>
       ${m.sticker ? sticker(m.sticker, 'g-sticker') : ''}
-    </a></li>`).join('')}</ul>`
+    </a></li>`).join('')}</ul>${items.length > galleryLimit ? moreButton('gallery') : ''}`
       : `<div class="empty sheet">${tinyFlower('empty-deco')}<p>${all.length ? 'No memories in this month yet.' : 'Your scrapbook fills up as you collect little happy things.'}</p></div>`}
   </div>`;
 }
 
 function bindGallery(root) {
-  $('#g-year', root).addEventListener('change', (e) => { galleryFilter.y = e.target.value; render(); });
-  $('#g-month', root).addEventListener('change', (e) => { galleryFilter.m = e.target.value; render(); });
+  $('#g-year', root).addEventListener('change', (e) => { galleryFilter.y = e.target.value; galleryLimit = PAGE; render(); });
+  $('#g-month', root).addEventListener('change', (e) => { galleryFilter.m = e.target.value; galleryLimit = PAGE; render(); });
+  // shortcut: each page re-renders the whole grid; switch to appending nodes if galleries pass a few thousand items.
+  autoMore(root, () => { const y = scrollY; galleryLimit += PAGE; render().then(() => scrollTo(0, y)); });
 }
 
 // ---------- STATS + MEMORY JAR ----------
@@ -528,8 +565,8 @@ function memoryJarHTML() {
   if (!all.length) return `<section class="memory-jar sheet" aria-labelledby="mj-h"><h2 id="mj-h">Memory Jar</h2><p>Every happy thing you keep is folded into this jar. It's waiting for the first one.</p></section>`;
   const p = pulled && all.find((m) => m.id === pulled);
   const slips = [...all].reverse();
-  // shortcut: renders the newest 300 slips; paginate if the jar ever gets slow.
-  const shown = slips.slice(0, 300);
+  // shortcut: shows the newest 120 slips; older ones are reached through search or Pull out a memory.
+  const shown = slips.slice(0, 120);
   return `<section class="memory-jar sheet" aria-labelledby="mj-h">
     <span class="tape tape-r" aria-hidden="true"></span>
     <div class="mj-head"><div><h2 id="mj-h">Memory Jar</h2><p>Every happy thing you've ever kept: <b>${all.length}</b>.</p></div>
